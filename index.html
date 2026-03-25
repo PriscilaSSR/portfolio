@@ -90,32 +90,14 @@ nav{
 .btn-ghost{background:transparent;color:rgba(255,255,255,0.5);font-family:var(--mo);font-size:10px;letter-spacing:0.14em;padding:0.85rem 1.8rem;border:1px solid rgba(255,255,255,0.15);cursor:pointer;transition:border-color 0.2s,color 0.2s;display:inline-block}
 .btn-ghost:hover{border-color:var(--pu2);color:var(--pu2)}
 
-/* Hero right — portrait photo */
+/* Hero right — SVG illustration */
 .hero-right{
   position:relative;z-index:2;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  padding:4rem 3rem;
   opacity:0;animation:fadeIn 1.2s 0.4s forwards;
 }
-.hero-portrait{
-  width:100%;height:100%;object-fit:cover;object-position:center top;
-  filter:grayscale(20%) contrast(1.05);
-  display:block;
-}
-.hero-portrait-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to right, rgba(9,9,11,0.6) 0%, transparent 40%),
-             linear-gradient(to top, rgba(9,9,11,0.7) 0%, transparent 50%);
-}
-.hero-portrait-label{
-  position:absolute;bottom:2.5rem;right:2.5rem;
-  font-family:var(--mo);font-size:9px;letter-spacing:0.2em;
-  color:rgba(255,255,255,0.35);text-align:right;
-}
-.hero-portrait-accent{
-  position:absolute;top:0;right:0;bottom:0;width:4px;background:var(--pu);
-}
-.hero-portrait-accent2{
-  position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--ye);
-}
+.hero-illustration{width:100%;max-width:420px}
 
 /* ── TICKER ── */
 .ticker{background:var(--pu);padding:10px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1)}
@@ -375,11 +357,39 @@ footer{background:var(--bk);border-top:2px solid var(--pu);padding:1.5rem 3rem;d
     <div style="font-family:var(--mo);font-size:9px;letter-spacing:0.18em;color:rgba(255,255,255,0.18);margin-top:3rem">University of Central Florida · Writing &amp; Rhetoric · Est. 2023</div>
   </div>
   <div class="hero-right">
-    <img class="hero-portrait" src="images/portrait.jpg" alt="Priscila Schilaro Santa Rosa">
-    <div class="hero-portrait-overlay"></div>
-    <div class="hero-portrait-label">Priscila Schilaro Santa Rosa<br>PhD Candidate · UCF 2026</div>
-    <div class="hero-portrait-accent"></div>
-    <div class="hero-portrait-accent2"></div>
+    <svg class="hero-illustration" viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="400" height="480" fill="none"/>
+      <rect x="40" y="30" width="200" height="220" fill="#7c3aed" rx="0"/>
+      <rect x="180" y="120" width="180" height="180" fill="#facc15" rx="0"/>
+      <rect x="40" y="280" width="120" height="160" fill="#16a34a" rx="0"/>
+      <rect x="200" y="330" width="160" height="110" fill="#18181b" rx="0"/>
+      <line x1="40" y1="250" x2="240" y2="250" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+      <line x1="180" y1="30" x2="180" y2="300" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <circle cx="290" cy="80" r="55" fill="none" stroke="#a855f7" stroke-width="2"/>
+      <circle cx="290" cy="80" r="35" fill="#a855f7" opacity="0.3"/>
+      <line x1="160" y1="440" x2="360" y2="280" stroke="#facc15" stroke-width="1.5" opacity="0.6"/>
+      <text x="60" y="210" font-family="Fraunces,Georgia,serif" font-size="160" font-weight="900" font-style="italic" fill="rgba(255,255,255,0.1)">P</text>
+      <g opacity="0.5">
+        <circle cx="210" cy="145" r="2.5" fill="#facc15"/>
+        <circle cx="225" cy="145" r="2.5" fill="#facc15"/>
+        <circle cx="240" cy="145" r="2.5" fill="#facc15"/>
+        <circle cx="255" cy="145" r="2.5" fill="#facc15"/>
+        <circle cx="210" cy="160" r="2.5" fill="#facc15"/>
+        <circle cx="225" cy="160" r="2.5" fill="#facc15"/>
+        <circle cx="240" cy="160" r="2.5" fill="#facc15"/>
+        <circle cx="255" cy="160" r="2.5" fill="#facc15"/>
+      </g>
+      <text x="50" y="310" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(255,255,255,0.7)" letter-spacing="2">AI LITERACY</text>
+      <text x="50" y="328" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(255,255,255,0.5)" letter-spacing="2">TRANSLINGUALISM</text>
+      <text x="50" y="346" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">RHETORIC</text>
+      <text x="50" y="364" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(255,255,255,0.2)" letter-spacing="2">CREATIVE WRITING</text>
+      <text x="210" y="365" font-family="Fraunces,Georgia,serif" font-size="36" font-weight="900" font-style="italic" fill="rgba(255,255,255,0.9)">10+</text>
+      <text x="210" y="382" font-family="IBM Plex Mono,monospace" font-size="8" fill="rgba(255,255,255,0.4)" letter-spacing="2">PUBLICATIONS</text>
+      <text x="300" y="365" font-family="Fraunces,Georgia,serif" font-size="36" font-weight="900" font-style="italic" fill="rgba(255,255,255,0.9)">5</text>
+      <text x="300" y="382" font-family="IBM Plex Mono,monospace" font-size="8" fill="rgba(255,255,255,0.4)" letter-spacing="2">DEGREES</text>
+      <rect x="40" y="440" width="320" height="24" fill="rgba(124,58,237,0.3)" rx="0"/>
+      <text x="200" y="456" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="3">SÃO PAULO → KISSIMMEE FL</text>
+    </svg>
   </div>
 </section>
 
