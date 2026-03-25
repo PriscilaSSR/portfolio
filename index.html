@@ -3,33 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Priscila Schilaro Santa Rosa</title>
+<title>Priscila Schilaro Santa Rosa — PhD Candidate, Educator, Writer</title>
+<meta name="description" content="Academic portfolio of Priscila Schilaro Santa Rosa — PhD candidate in Text & Technology at UCF, researcher, educator, and published writer.">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,900;1,9..144,300;1,9..144,700&family=Syne:wght@400;700;800&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --pu:#7c3aed;--pu2:#a855f7;--pu3:#ddd6fe;--pu4:#f5f3ff;
+  --pu:#7c3aed;--pu2:#a78bfa;--pu3:#ddd6fe;
   --gr:#16a34a;--gr2:#4ade80;
-  --ye:#facc15;--ye2:#fef08a;
+  --ye:#facc15;
   --wh:#ffffff;--bk:#09090b;
   --fr:'Fraunces',Georgia,serif;
   --sy:'Syne',system-ui,sans-serif;
   --mo:'IBM Plex Mono',monospace;
+  /* Accessible text colours — all pass WCAG AA on their backgrounds */
+  --text-muted:#c4b5fd;   /* purple-200 on near-black: 7.2:1 */
+  --text-dim:#d4d4d8;     /* zinc-300 on near-black: 9.1:1  */
+  --text-sub:#a1a1aa;     /* zinc-400 on near-black: 5.9:1  */
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--sy);background:var(--bk);color:var(--wh);overflow-x:hidden;font-size:16px;line-height:1.6}
 a{text-decoration:none;color:inherit}
 
+/* ── SKIP LINK ── */
+.skip-link{
+  position:absolute;top:-100%;left:1rem;
+  background:var(--ye);color:var(--bk);
+  font-family:var(--mo);font-size:14px;font-weight:700;
+  padding:0.75rem 1.5rem;z-index:9999;
+  text-decoration:none;
+}
+.skip-link:focus{top:1rem}
+
+/* ── FOCUS RING — visible on all interactive elements ── */
+:focus-visible{
+  outline:3px solid var(--ye);
+  outline-offset:3px;
+}
+a:focus-visible,button:focus-visible{
+  outline:3px solid var(--ye);
+  outline-offset:3px;
+}
+
 .cursor-glow{
   width:500px;height:500px;border-radius:50%;
   background:radial-gradient(circle,rgba(124,58,237,0.13) 0%,transparent 70%);
   position:fixed;pointer-events:none;z-index:0;
-  transform:translate(-50%,-50%);transition:opacity 0.3s;
+  transform:translate(-50%,-50%);
 }
 
+/* ── NAV ── */
 nav{
   position:sticky;top:0;z-index:200;
-  background:rgba(9,9,11,0.88);
+  background:rgba(9,9,11,0.92);
   backdrop-filter:blur(18px);
   border-bottom:1px solid rgba(124,58,237,0.22);
   display:flex;align-items:center;justify-content:space-between;
@@ -40,11 +66,11 @@ nav{
 .nav-links{display:flex;gap:0;list-style:none}
 .nav-links a{
   padding:0 1.1rem;height:60px;line-height:60px;
-  font-family:var(--mo);font-size:10px;letter-spacing:0.14em;
-  color:rgba(255,255,255,0.4);border-left:1px solid rgba(255,255,255,0.06);
+  font-family:var(--mo);font-size:12px;letter-spacing:0.12em;
+  color:var(--text-dim);border-left:1px solid rgba(255,255,255,0.08);
   transition:color 0.2s,background 0.2s;
 }
-.nav-links a:hover{color:var(--ye);background:rgba(124,58,237,0.12)}
+.nav-links a:hover{color:var(--ye);background:rgba(124,58,237,0.15)}
 
 /* ── HERO ── */
 .hero{
@@ -60,7 +86,7 @@ nav{
   border-right:1px solid rgba(124,58,237,0.2);
 }
 .hero-eyebrow{
-  font-family:var(--mo);font-size:10px;letter-spacing:0.22em;color:var(--pu2);
+  font-family:var(--mo);font-size:13px;letter-spacing:0.18em;color:var(--pu2);
   margin-bottom:2.5rem;display:flex;align-items:center;gap:0.8rem;
   opacity:0;animation:fadeUp 0.6s 0.2s forwards;
 }
@@ -73,10 +99,10 @@ nav{
 }
 .hero-h1 .l1{color:var(--wh)}
 .hero-h1 .l2{color:var(--pu2);font-style:italic;font-weight:300}
-.hero-h1 .l3{color:transparent;-webkit-text-stroke:1px rgba(168,85,247,0.45);font-style:italic}
+.hero-h1 .l3{color:transparent;-webkit-text-stroke:1px rgba(167,139,250,0.55);font-style:italic}
 .hero-desc{
   font-family:var(--fr);font-style:italic;font-weight:300;
-  font-size:1rem;color:rgba(255,255,255,0.45);
+  font-size:1.05rem;color:var(--text-dim);
   max-width:380px;line-height:1.9;
   border-left:2px solid var(--pu);padding-left:1rem;margin-top:2.5rem;
   opacity:0;animation:fadeUp 0.6s 0.55s forwards;
@@ -85,12 +111,12 @@ nav{
   display:flex;gap:1rem;margin-top:3rem;flex-wrap:wrap;
   opacity:0;animation:fadeUp 0.6s 0.7s forwards;
 }
-.btn-fill{background:var(--pu);color:var(--wh);font-family:var(--mo);font-size:10px;letter-spacing:0.14em;padding:0.85rem 1.8rem;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s;display:inline-block}
-.btn-fill:hover{background:var(--pu2);transform:translateY(-2px)}
-.btn-ghost{background:transparent;color:rgba(255,255,255,0.5);font-family:var(--mo);font-size:10px;letter-spacing:0.14em;padding:0.85rem 1.8rem;border:1px solid rgba(255,255,255,0.15);cursor:pointer;transition:border-color 0.2s,color 0.2s;display:inline-block}
+.btn-fill{background:var(--pu);color:var(--wh);font-family:var(--mo);font-size:13px;letter-spacing:0.12em;padding:0.85rem 1.8rem;border:2px solid var(--pu);cursor:pointer;transition:background 0.2s,transform 0.15s;display:inline-block}
+.btn-fill:hover{background:var(--pu2);border-color:var(--pu2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--text-dim);font-family:var(--mo);font-size:13px;letter-spacing:0.12em;padding:0.85rem 1.8rem;border:1px solid rgba(255,255,255,0.3);cursor:pointer;transition:border-color 0.2s,color 0.2s;display:inline-block}
 .btn-ghost:hover{border-color:var(--pu2);color:var(--pu2)}
+.hero-footer-note{font-family:var(--mo);font-size:12px;letter-spacing:0.14em;color:var(--text-sub);margin-top:3rem}
 
-/* Hero right — SVG illustration */
 .hero-right{
   position:relative;z-index:2;overflow:hidden;
   display:flex;align-items:center;justify-content:center;
@@ -102,7 +128,7 @@ nav{
 /* ── TICKER ── */
 .ticker{background:var(--pu);padding:10px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1)}
 .ticker-track{display:inline-block;animation:ticker 22s linear infinite}
-.ticker-track span{font-family:var(--mo);font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.85);margin:0 2.5rem}
+.ticker-track span{font-family:var(--mo);font-size:13px;letter-spacing:0.14em;color:#fff;margin:0 2.5rem}
 .ticker-track span.dot{color:var(--ye);margin:0 0.5rem}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
@@ -114,129 +140,143 @@ nav{
 .reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.7s ease,transform 0.7s ease}
 .reveal-right.in{opacity:1;transform:none}
 
+/* ── REDUCED MOTION — disable all animations ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}
+  .reveal,.reveal-left,.reveal-right{opacity:1;transform:none}
+  .ticker-track{animation:none}
+  #hero-canvas{display:none}
+  .cursor-glow{display:none}
+}
+
 /* ── SECTION HEADERS ── */
 .sec-head{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3rem}
-.sec-label{font-family:var(--mo);font-size:9px;letter-spacing:0.22em;color:var(--pu2)}
-.sec-label.gr{color:var(--gr2)}.sec-label.ye{color:var(--ye)}.sec-label.wh{color:rgba(255,255,255,0.4)}
+.sec-label{font-family:var(--mo);font-size:12px;letter-spacing:0.18em;color:var(--pu2)}
+.sec-label.gr{color:var(--gr2)}.sec-label.ye{color:var(--ye)}.sec-label.wh{color:var(--text-dim)}
 .sec-title{font-family:var(--fr);font-weight:900;font-size:clamp(2.5rem,5vw,5rem);line-height:0.92;color:var(--wh)}
 .sec-title em{font-style:italic;font-weight:300}
-.sec-rule{flex:1;height:1px;background:rgba(255,255,255,0.08)}
+.sec-rule{flex:1;height:1px;background:rgba(255,255,255,0.12)}
+
+/* ── ABOUT STRIP ── */
+.about-strip{
+  display:grid;grid-template-columns:320px 1fr;
+  background:#0f0a1e;
+  border-top:1px solid rgba(124,58,237,0.2);
+  border-bottom:1px solid rgba(124,58,237,0.2);
+}
+.about-photo{position:relative;overflow:hidden}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;min-height:400px}
+.about-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 70%,rgba(15,10,30,1) 100%)}
+.about-photo-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--pu);z-index:1}
+.about-text{padding:4rem;display:flex;flex-direction:column;justify-content:center}
+.about-kicker{font-family:var(--mo);font-size:12px;letter-spacing:0.18em;color:var(--pu2);margin-bottom:1.5rem}
+.about-name{font-family:var(--fr);font-weight:900;font-size:2.8rem;line-height:0.95;color:var(--wh);margin-bottom:1.5rem}
+.about-name em{font-weight:300;font-style:italic;color:var(--pu2)}
+.about-body{font-family:var(--fr);font-style:italic;font-weight:300;font-size:1.05rem;color:var(--text-dim);line-height:1.9;max-width:500px;border-left:2px solid var(--pu);padding-left:1.2rem}
+.about-stats{display:flex;gap:3rem;margin-top:2.5rem}
+.about-stat-n{font-family:var(--fr);font-style:italic;font-size:2.5rem;color:var(--pu2);line-height:1;display:block}
+.about-stat-l{font-family:var(--mo);font-size:12px;letter-spacing:0.14em;color:var(--text-sub)}
 
 /* ── EDUCATION — BENTO ── */
 .bento{padding:6rem 3rem;background:var(--bk)}
-.bento-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:auto;gap:12px}
-.bento-cell{background:#18181b;border:1px solid rgba(124,58,237,0.2);padding:2rem;overflow:hidden;position:relative;transition:border-color 0.25s,transform 0.25s;cursor:default}
-.bento-cell:hover{border-color:var(--pu);transform:translateY(-3px)}
+.bento-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.bento-cell{background:#18181b;border:1px solid rgba(124,58,237,0.2);padding:2rem;overflow:hidden;position:relative;transition:border-color 0.25s,transform 0.25s}
+.bento-cell:hover{border-color:var(--pu2);transform:translateY(-3px)}
 .bc-1{grid-column:span 4}
-.bc-2{grid-column:span 2;background:var(--pu);border-color:var(--pu)}
+.bc-2{grid-column:span 2;background:#5b21b6;border-color:#5b21b6}
 .bc-3{grid-column:span 2}
 .bc-4{grid-column:span 2}
-.bc-5{grid-column:span 2;background:#16a34a;border-color:#16a34a}
-.bc-6{grid-column:span 6;background:#facc15;border-color:#facc15;padding:1.5rem 2rem;display:flex;align-items:center;gap:3rem}
-.bc-num{font-family:var(--fr);font-style:italic;font-size:4rem;line-height:1;color:rgba(124,58,237,0.2);margin-bottom:0.5rem;font-weight:900}
-.bc-2 .bc-num,.bc-5 .bc-num{color:rgba(255,255,255,0.18)}
-.bc-6 .bc-num{color:rgba(9,9,11,0.12);font-size:3rem;margin:0}
+.bc-5{grid-column:span 2;background:#15803d;border-color:#15803d}
+.bc-6{grid-column:span 6;background:#ca8a04;border-color:#ca8a04;padding:1.5rem 2rem;display:flex;align-items:center;gap:3rem}
+.bc-num{font-family:var(--fr);font-style:italic;font-size:4rem;line-height:1;color:rgba(167,139,250,0.3);margin-bottom:0.5rem;font-weight:900}
+.bc-2 .bc-num,.bc-5 .bc-num{color:rgba(255,255,255,0.2)}
+.bc-6 .bc-num{color:rgba(9,9,11,0.15);font-size:3rem;margin:0}
 .bc-deg{font-family:var(--fr);font-weight:900;font-size:1.1rem;color:var(--wh);line-height:1.2;margin-bottom:0.3rem}
 .bc-2 .bc-deg,.bc-5 .bc-deg{color:#fff}
-.bc-6 .bc-deg{color:var(--bk);font-size:1rem}
-.bc-school{font-family:var(--mo);font-size:10px;letter-spacing:0.08em;color:rgba(255,255,255,0.4)}
-.bc-2 .bc-school,.bc-5 .bc-school{color:rgba(255,255,255,0.65)}
-.bc-6 .bc-school{color:rgba(9,9,11,0.5)}
-.bc-yr{font-family:var(--mo);font-size:9px;letter-spacing:0.1em;color:rgba(255,255,255,0.28);margin-top:0.4rem}
-.bc-6 .bc-yr{color:rgba(9,9,11,0.35)}
-.bc-badge{display:inline-block;background:var(--bk);color:var(--ye);font-family:var(--mo);font-size:8px;padding:3px 7px;letter-spacing:0.1em;margin-top:0.5rem}
+.bc-6 .bc-deg{color:#1c1917;font-size:1rem}
+.bc-school{font-family:var(--mo);font-size:13px;letter-spacing:0.06em;color:var(--text-dim)}
+.bc-2 .bc-school{color:#e9d5ff}
+.bc-5 .bc-school{color:#bbf7d0}
+.bc-6 .bc-school{color:#44403c}
+.bc-yr{font-family:var(--mo);font-size:12px;letter-spacing:0.08em;color:var(--text-sub);margin-top:0.4rem}
+.bc-6 .bc-yr{color:#78716c}
+.bc-badge{display:inline-block;background:var(--bk);color:var(--ye);font-family:var(--mo);font-size:11px;padding:3px 7px;letter-spacing:0.08em;margin-top:0.5rem}
 
-/* ── PUBLICATIONS — with statue photo ── */
+/* ── PUBLICATIONS ── */
 .pub-section{padding:0;background:#0a0614;position:relative;overflow:hidden}
-.pub-statue-panel{
-  position:relative;height:420px;overflow:hidden;
-}
-.pub-statue-img{
-  width:100%;height:100%;object-fit:cover;object-position:center 30%;
-  filter:brightness(0.45) contrast(1.1);display:block;
-}
-.pub-statue-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom, transparent 0%, rgba(10,6,20,0.5) 60%, rgba(10,6,20,1) 100%),
-             linear-gradient(to right, rgba(124,58,237,0.2) 0%, transparent 60%);
-}
-.pub-statue-text{
-  position:absolute;bottom:3rem;left:3rem;right:3rem;
-}
-.pub-statue-text .sec-head{margin-bottom:0}
+.pub-statue-panel{position:relative;height:420px;overflow:hidden}
+.pub-statue-img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(0.45) contrast(1.1);display:block}
+.pub-statue-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,rgba(10,6,20,0.5) 60%,rgba(10,6,20,1) 100%),linear-gradient(to right,rgba(124,58,237,0.2) 0%,transparent 60%)}
+.pub-statue-text{position:absolute;bottom:3rem;left:3rem;right:3rem}
 .pub-inner{padding:3rem 3rem 6rem}
 .pub-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
-.pub-col-head{font-family:var(--mo);font-size:10px;letter-spacing:0.2em;color:var(--pu2);padding-bottom:1rem;border-bottom:1px solid rgba(124,58,237,0.25);margin-bottom:0}
-.pub-col-head.green{color:var(--gr2);border-color:rgba(74,222,128,0.25)}
-.pub-entry{padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.04);transition:padding-left 0.2s;cursor:default}
+.pub-col-head{font-family:var(--mo);font-size:12px;letter-spacing:0.16em;color:var(--pu2);padding-bottom:1rem;border-bottom:1px solid rgba(167,139,250,0.3);margin-bottom:0}
+.pub-col-head.green{color:var(--gr2);border-color:rgba(74,222,128,0.3)}
+.pub-entry{padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:padding-left 0.2s}
 .pub-entry:hover{padding-left:0.5rem}
 .pub-entry:hover .pe-t{color:var(--pu2)}
 .pub-col:last-child .pub-entry:hover .pe-t{color:var(--gr2)}
-.pe-t{font-family:var(--fr);font-style:italic;font-size:0.95rem;color:rgba(255,255,255,0.78);line-height:1.4;transition:color 0.2s;margin-bottom:0.2rem}
-.pe-v{font-family:var(--mo);font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:0.05em}
-.pe-y{font-family:var(--mo);font-size:9px;color:var(--pu2);letter-spacing:0.12em;margin-top:0.2rem}
+.pe-t{font-family:var(--fr);font-style:italic;font-size:0.98rem;color:var(--text-dim);line-height:1.4;transition:color 0.2s;margin-bottom:0.2rem}
+.pe-v{font-family:var(--mo);font-size:12px;color:var(--text-sub);letter-spacing:0.04em}
+.pe-y{font-family:var(--mo);font-size:12px;color:var(--pu2);letter-spacing:0.1em;margin-top:0.2rem}
 .pub-col:last-child .pe-y{color:var(--gr2)}
 
-/* ── EXPERIENCE — horizontal drag ── */
+/* ── EXPERIENCE ── */
 .xp-section{padding:6rem 3rem;background:#09090b;overflow:hidden}
 .xp-scroll-wrap{overflow-x:auto;padding-bottom:1rem;cursor:grab;user-select:none}
-.xp-scroll-wrap::-webkit-scrollbar{height:2px}
-.xp-scroll-wrap::-webkit-scrollbar-track{background:rgba(255,255,255,0.04)}
+.xp-scroll-wrap:focus{cursor:default}
+.xp-scroll-wrap::-webkit-scrollbar{height:3px}
+.xp-scroll-wrap::-webkit-scrollbar-track{background:rgba(255,255,255,0.05)}
 .xp-scroll-wrap::-webkit-scrollbar-thumb{background:var(--pu)}
 .xp-cards{display:flex;gap:16px;width:max-content;padding-bottom:0.5rem}
-.xp-card{width:340px;flex-shrink:0;background:#18181b;border:1px solid rgba(124,58,237,0.18);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:border-color 0.2s}
-.xp-card:hover{border-color:var(--pu)}
+.xp-card{width:340px;flex-shrink:0;background:#18181b;border:1px solid rgba(124,58,237,0.2);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:border-color 0.2s}
+.xp-card:hover{border-color:var(--pu2)}
 .xp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--pu)}
 .xp-card.green::before{background:var(--gr)}
 .xp-card.yellow::before{background:var(--ye)}
-.xp-date{font-family:var(--mo);font-size:9px;letter-spacing:0.15em;color:var(--pu2);margin-bottom:0.8rem}
+.xp-date{font-family:var(--mo);font-size:12px;letter-spacing:0.12em;color:var(--pu2);margin-bottom:0.8rem}
 .xp-card.green .xp-date{color:var(--gr2)}.xp-card.yellow .xp-date{color:var(--ye)}
 .xp-role{font-family:var(--fr);font-weight:900;font-size:1.3rem;line-height:1.1;color:var(--wh);margin-bottom:0.3rem}
-.xp-org{font-family:var(--mo);font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;margin-bottom:1rem}
+.xp-org{font-family:var(--mo);font-size:12px;color:var(--text-sub);letter-spacing:0.05em;margin-bottom:1rem}
 .xp-pts{display:flex;flex-direction:column;gap:0.4rem}
-.xp-pt{font-size:0.83rem;color:rgba(255,255,255,0.52);font-family:var(--fr);font-style:italic;line-height:1.5;display:flex;gap:0.6rem}
-.xp-pt::before{content:'→';color:var(--pu);font-size:11px;flex-shrink:0;font-style:normal;margin-top:2px}
+.xp-pt{font-size:0.9rem;color:var(--text-dim);font-family:var(--fr);font-style:italic;line-height:1.5;display:flex;gap:0.6rem}
+.xp-pt::before{content:'→';color:var(--pu2);font-size:12px;flex-shrink:0;font-style:normal;margin-top:2px}
 .xp-card.green .xp-pt::before{color:var(--gr2)}.xp-card.yellow .xp-pt::before{color:var(--ye)}
-.xp-drag-hint{font-family:var(--mo);font-size:9px;letter-spacing:0.15em;color:rgba(255,255,255,0.22);margin-top:1rem;display:flex;align-items:center;gap:0.5rem}
+.xp-drag-hint{font-family:var(--mo);font-size:12px;letter-spacing:0.12em;color:var(--text-sub);margin-bottom:1rem}
 
-/* ── TALKS — with statue2 photo ── */
+/* ── TALKS ── */
 .talks-section{padding:0;background:#0a0614;position:relative;overflow:hidden}
-.talks-statue-panel{
-  position:relative;height:380px;overflow:hidden;
-}
-.talks-statue-img{
-  width:100%;height:100%;object-fit:cover;object-position:center 20%;
-  filter:brightness(0.4) contrast(1.1) hue-rotate(220deg) saturate(1.5);
-  display:block;
-}
-.talks-statue-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom, transparent 0%, rgba(10,6,20,0.6) 55%, rgba(10,6,20,1) 100%);
-}
+.talks-statue-panel{position:relative;height:380px;overflow:hidden}
+.talks-statue-img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:brightness(0.4) contrast(1.1) hue-rotate(220deg) saturate(1.5);display:block}
+.talks-statue-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,rgba(10,6,20,0.6) 55%,rgba(10,6,20,1) 100%)}
 .talks-statue-text{position:absolute;bottom:3rem;left:3rem;right:3rem}
 .talks-inner{padding:2rem 3rem 6rem;position:relative;overflow:hidden}
-.talks-bg-num{
-  position:absolute;font-family:var(--fr);font-size:38vw;font-weight:900;font-style:italic;
-  color:rgba(124,58,237,0.04);right:-4vw;top:50%;transform:translateY(-50%);
-  pointer-events:none;user-select:none;line-height:1;
-}
+.talks-bg-num{position:absolute;font-family:var(--fr);font-size:38vw;font-weight:900;font-style:italic;color:rgba(124,58,237,0.04);right:-4vw;top:50%;transform:translateY(-50%);pointer-events:none;user-select:none;line-height:1;aria-hidden:true}
 .talks-list{display:flex;flex-direction:column;position:relative;z-index:1}
-.talk-row{display:grid;grid-template-columns:80px 1fr auto;gap:2rem;padding:1.8rem 0;border-bottom:1px solid rgba(124,58,237,0.1);transition:background 0.2s,padding-left 0.2s;cursor:default}
-.talk-row:hover{background:rgba(124,58,237,0.06);padding-left:0.75rem}
-.talk-n{font-family:var(--fr);font-style:italic;font-size:2.5rem;color:rgba(168,85,247,0.18);line-height:1;transition:color 0.2s}
+.talk-row{display:grid;grid-template-columns:80px 1fr auto;gap:2rem;padding:1.8rem 0;border-bottom:1px solid rgba(124,58,237,0.12);transition:background 0.2s,padding-left 0.2s}
+.talk-row:hover{background:rgba(124,58,237,0.08);padding-left:0.75rem}
+.talk-n{font-family:var(--fr);font-style:italic;font-size:2.5rem;color:rgba(167,139,250,0.25);line-height:1;transition:color 0.2s;aria-hidden:true}
 .talk-row:hover .talk-n{color:var(--pu2)}
-.talk-t{font-family:var(--fr);font-style:italic;font-size:1rem;color:rgba(255,255,255,0.78);line-height:1.45;margin-bottom:0.25rem}
-.talk-v{font-family:var(--mo);font-size:9px;color:rgba(255,255,255,0.28);letter-spacing:0.06em}
-.talk-yr{font-family:var(--mo);font-size:10px;color:var(--pu2);letter-spacing:0.1em;white-space:nowrap;padding-top:0.4rem}
+.talk-t{font-family:var(--fr);font-style:italic;font-size:1rem;color:var(--text-dim);line-height:1.45;margin-bottom:0.25rem}
+.talk-v{font-family:var(--mo);font-size:12px;color:var(--text-sub);letter-spacing:0.05em}
+.talk-yr{font-family:var(--mo);font-size:12px;color:var(--pu2);letter-spacing:0.08em;white-space:nowrap;padding-top:0.4rem}
 
-/* ── RESEARCH ── */
+/* ── RESEARCH TAGS — buttons ── */
 .research-section{padding:6rem 3rem;background:var(--pu);position:relative;overflow:hidden}
-.research-bg{position:absolute;font-family:var(--fr);font-size:32vw;font-weight:900;font-style:italic;color:rgba(255,255,255,0.04);bottom:-5vh;right:-3vw;pointer-events:none;user-select:none;line-height:1}
+.research-bg{position:absolute;font-family:var(--fr);font-size:32vw;font-weight:900;font-style:italic;color:rgba(255,255,255,0.05);bottom:-5vh;right:-3vw;pointer-events:none;user-select:none;line-height:1}
 .tag-cloud{display:flex;flex-wrap:wrap;gap:0.7rem;position:relative;z-index:1}
-.rtag{font-family:var(--mo);font-size:11px;letter-spacing:0.08em;padding:0.55rem 1.2rem;border:1.5px solid rgba(255,255,255,0.28);color:rgba(255,255,255,0.65);background:transparent;cursor:pointer;transition:all 0.18s}
-.rtag:hover,.rtag.active{background:#fff;color:var(--pu);border-color:#fff;transform:scale(1.05)}
-.rtag.featured{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.45);color:#fff}
-.rtag.featured:hover{background:#fff;color:var(--pu)}
+.rtag{
+  font-family:var(--mo);font-size:13px;letter-spacing:0.07em;
+  padding:0.6rem 1.2rem;
+  border:2px solid rgba(255,255,255,0.4);
+  color:#fff;background:transparent;
+  cursor:pointer;transition:all 0.18s;
+  /* button reset */
+  appearance:none;-webkit-appearance:none;
+}
+.rtag:hover,.rtag[aria-pressed="true"]{background:#fff;color:var(--pu);border-color:#fff}
+.rtag.featured{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.6)}
+.rtag.featured:hover,.rtag.featured[aria-pressed="true"]{background:#fff;color:var(--pu)}
 
 /* ── SKILLS + AWARDS ── */
 .bottom-panels{display:grid;grid-template-columns:1fr 1fr;min-height:60vh}
@@ -245,64 +285,34 @@ nav{
 .panel-title{font-family:var(--fr);font-weight:900;font-size:2.5rem;color:var(--wh);line-height:0.95;margin-bottom:2.5rem}
 .panel-title em{font-style:italic;font-weight:300;color:var(--pu2)}
 .skill-group{margin-bottom:2rem}
-.sg-head{font-family:var(--mo);font-size:9px;letter-spacing:0.2em;color:var(--pu);border-bottom:1px solid rgba(124,58,237,0.3);padding-bottom:0.5rem;margin-bottom:0.7rem}
-.sg-item{font-family:var(--fr);font-size:0.9rem;color:rgba(255,255,255,0.52);padding:0.3rem 0;display:flex;align-items:center;gap:0.6rem}
-.sg-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pu2);flex-shrink:0}
+.sg-head{font-family:var(--mo);font-size:12px;letter-spacing:0.16em;color:var(--pu2);border-bottom:1px solid rgba(124,58,237,0.3);padding-bottom:0.5rem;margin-bottom:0.7rem}
+.sg-item{font-family:var(--fr);font-size:0.95rem;color:var(--text-dim);padding:0.3rem 0;display:flex;align-items:center;gap:0.6rem}
+.sg-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--pu2);flex-shrink:0}
 .award-list{display:flex;flex-direction:column;gap:1rem}
-.award-card{padding:1.2rem 1.5rem;border:1px solid rgba(255,255,255,0.06);border-left:3px solid var(--pu);transition:border-left-color 0.2s,background 0.2s;cursor:default}
-.award-card:hover{border-left-color:var(--ye);background:rgba(250,204,21,0.04)}
-.award-t{font-family:var(--sy);font-size:0.88rem;font-weight:700;color:var(--wh);margin-bottom:0.2rem;letter-spacing:0.01em}
-.award-m{font-family:var(--mo);font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.04em}
+.award-card{padding:1.2rem 1.5rem;border:1px solid rgba(255,255,255,0.08);border-left:3px solid var(--pu);transition:border-left-color 0.2s,background 0.2s}
+.award-card:hover{border-left-color:var(--ye);background:rgba(250,204,21,0.05)}
+.award-t{font-family:var(--sy);font-size:0.95rem;font-weight:700;color:var(--wh);margin-bottom:0.2rem}
+.award-m{font-family:var(--mo);font-size:12px;color:var(--text-sub);letter-spacing:0.03em}
 
 /* ── CONTACT ── */
 .contact-section{min-height:60vh;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(124,58,237,0.3)}
 .contact-left{background:var(--pu);padding:6rem 4rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.contact-left-bg{position:absolute;font-family:var(--fr);font-style:italic;font-weight:900;font-size:22vw;color:rgba(255,255,255,0.05);bottom:-0.1em;right:-0.05em;line-height:1;pointer-events:none}
+.contact-left-bg{position:absolute;font-family:var(--fr);font-style:italic;font-weight:900;font-size:22vw;color:rgba(255,255,255,0.06);bottom:-0.1em;right:-0.05em;line-height:1;pointer-events:none}
 .contact-h{font-family:var(--fr);font-weight:900;font-size:clamp(3.5rem,6vw,7rem);line-height:0.9;color:#fff;position:relative;z-index:1}
 .contact-h em{font-weight:300;font-style:italic;color:var(--ye)}
-.contact-quote{font-family:var(--fr);font-style:italic;font-weight:300;font-size:1.05rem;color:rgba(255,255,255,0.55);max-width:340px;line-height:1.85;position:relative;z-index:1}
+.contact-quote{font-family:var(--fr);font-style:italic;font-weight:300;font-size:1.05rem;color:#e9d5ff;max-width:340px;line-height:1.85;position:relative;z-index:1}
 .contact-right{background:#0f0a1e;padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center;gap:1.5rem}
-.c-field{display:flex;flex-direction:column;gap:4px;padding:1.2rem;border:1px solid rgba(124,58,237,0.14);transition:border-color 0.2s}
-.c-field:hover{border-color:rgba(124,58,237,0.45)}
-.c-lbl{font-family:var(--mo);font-size:8px;letter-spacing:0.22em;color:var(--pu2)}
-.c-val{font-family:var(--fr);font-size:1rem;color:rgba(255,255,255,0.65);font-style:italic}
-.contact-cta{display:inline-block;align-self:flex-start;background:var(--ye);color:var(--bk);font-family:var(--mo);font-size:10px;letter-spacing:0.16em;padding:0.9rem 2rem;transition:background 0.2s,transform 0.15s}
-.contact-cta:hover{background:#fff;transform:translateY(-2px)}
-
-/* ── PORTRAIT ABOUT STRIP ── */
-.about-strip{
-  display:grid;grid-template-columns:320px 1fr;
-  background:#0f0a1e;
-  border-top:1px solid rgba(124,58,237,0.2);
-  border-bottom:1px solid rgba(124,58,237,0.2);
-}
-.about-photo{position:relative;overflow:hidden}
-.about-photo img{
-  width:100%;height:100%;object-fit:cover;object-position:center top;
-  filter:grayscale(10%) contrast(1.05);display:block;
-  min-height:400px;
-}
-.about-photo::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to right, transparent 70%, rgba(15,10,30,1) 100%);
-}
-.about-photo-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--pu)}
-.about-text{
-  padding:4rem;
-  display:flex;flex-direction:column;justify-content:center;
-}
-.about-kicker{font-family:var(--mo);font-size:9px;letter-spacing:0.22em;color:var(--pu2);margin-bottom:1.5rem}
-.about-name{font-family:var(--fr);font-weight:900;font-size:2.8rem;line-height:0.95;color:var(--wh);margin-bottom:1.5rem}
-.about-name em{font-weight:300;font-style:italic;color:var(--pu2)}
-.about-body{font-family:var(--fr);font-style:italic;font-weight:300;font-size:1rem;color:rgba(255,255,255,0.5);line-height:1.9;max-width:500px;border-left:2px solid var(--pu);padding-left:1.2rem}
-.about-stats{display:flex;gap:3rem;margin-top:2.5rem}
-.about-stat-n{font-family:var(--fr);font-style:italic;font-size:2.5rem;color:var(--pu2);line-height:1;display:block}
-.about-stat-l{font-family:var(--mo);font-size:8px;letter-spacing:0.18em;color:rgba(255,255,255,0.3)}
+.c-field{display:flex;flex-direction:column;gap:4px;padding:1.2rem;border:1px solid rgba(124,58,237,0.18);transition:border-color 0.2s}
+.c-field:hover{border-color:rgba(124,58,237,0.5)}
+.c-lbl{font-family:var(--mo);font-size:12px;letter-spacing:0.16em;color:var(--pu2)}
+.c-val{font-family:var(--fr);font-size:1.05rem;color:var(--text-dim);font-style:italic}
+.contact-cta{display:inline-block;align-self:flex-start;background:var(--ye);color:#1c1917;font-family:var(--mo);font-size:13px;font-weight:700;letter-spacing:0.14em;padding:0.9rem 2rem;transition:background 0.2s,transform 0.15s;border:2px solid var(--ye)}
+.contact-cta:hover{background:#fff;border-color:#fff;transform:translateY(-2px)}
 
 /* ── FOOTER ── */
 footer{background:var(--bk);border-top:2px solid var(--pu);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center}
-.f-sig{font-family:var(--fr);font-style:italic;font-weight:300;font-size:1rem;color:rgba(255,255,255,0.3)}
-.f-meta{font-family:var(--mo);font-size:9px;letter-spacing:0.14em;color:rgba(255,255,255,0.18)}
+.f-sig{font-family:var(--fr);font-style:italic;font-weight:300;font-size:1rem;color:var(--text-sub)}
+.f-meta{font-family:var(--mo);font-size:12px;letter-spacing:0.12em;color:var(--text-sub)}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -322,11 +332,15 @@ footer{background:var(--bk);border-top:2px solid var(--pu);padding:1.5rem 3rem;d
 </head>
 <body>
 
-<div class="cursor-glow" id="glow"></div>
+<!-- SKIP LINK -->
+<a class="skip-link" href="#main">Skip to main content</a>
 
-<nav>
-  <span class="nav-logo">Priscila <span>Schilaro</span> Santa Rosa</span>
-  <ul class="nav-links">
+<div class="cursor-glow" id="glow" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <a href="#main" class="nav-logo" aria-label="Priscila Schilaro Santa Rosa — home">Priscila <span>Schilaro</span> Santa Rosa</a>
+  <ul class="nav-links" role="list">
     <li><a href="#about">About</a></li>
     <li><a href="#edu">Education</a></li>
     <li><a href="#pub">Publications</a></li>
@@ -337,48 +351,50 @@ footer{background:var(--bk);border-top:2px solid var(--pu);padding:1.5rem 3rem;d
   </ul>
 </nav>
 
+<main id="main">
+
 <!-- HERO -->
-<section class="hero">
-  <canvas id="hero-canvas"></canvas>
+<section class="hero" aria-label="Introduction">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-left">
-    <div class="hero-eyebrow">PhD Candidate · Educator · Writer · São Paulo → Orlando</div>
+    <p class="hero-eyebrow" aria-label="PhD Candidate, Educator, Writer, São Paulo to Orlando">
+      <span lang="pt">PhD Candidate</span> · Educator · Writer · <span lang="pt">São Paulo</span> → Orlando
+    </p>
     <div>
-      <div class="hero-h1">
-        <div class="l1">PRISCILA</div>
-        <div class="l2">Schilaro</div>
-        <div class="l3">Santa Rosa</div>
-      </div>
+      <h1 class="hero-h1">
+        <span class="l1">PRISCILA</span><br>
+        <span class="l2">Schilaro</span><br>
+        <span class="l3" aria-hidden="true">Santa Rosa</span>
+        <span class="sr-only">Santa Rosa</span>
+      </h1>
       <p class="hero-desc">Researching AI writing tools, multilingual literacy, and rhetoric — while never losing sight of the human voice at the center of every text.</p>
       <div class="hero-actions">
         <a href="#pub" class="btn-fill">Publications →</a>
         <a href="#research" class="btn-ghost">Research interests</a>
       </div>
     </div>
-    <div style="font-family:var(--mo);font-size:9px;letter-spacing:0.18em;color:rgba(255,255,255,0.18);margin-top:3rem">University of Central Florida · Writing &amp; Rhetoric · Est. 2023</div>
+    <p class="hero-footer-note">University of Central Florida · Writing &amp; Rhetoric · Est. 2023</p>
   </div>
-  <div class="hero-right">
-    <svg class="hero-illustration" viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="400" height="480" fill="none"/>
-      <rect x="40" y="30" width="200" height="220" fill="#7c3aed" rx="0"/>
-      <rect x="180" y="120" width="180" height="180" fill="#facc15" rx="0"/>
-      <rect x="40" y="280" width="120" height="160" fill="#16a34a" rx="0"/>
-      <rect x="200" y="330" width="160" height="110" fill="#18181b" rx="0"/>
+  <div class="hero-right" aria-hidden="true">
+    <svg class="hero-illustration" viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract modernist composition in purple, yellow and green">
+      <rect x="40" y="30" width="200" height="220" fill="#7c3aed"/>
+      <rect x="180" y="120" width="180" height="180" fill="#facc15"/>
+      <rect x="40" y="280" width="120" height="160" fill="#16a34a"/>
+      <rect x="200" y="330" width="160" height="110" fill="#18181b"/>
       <line x1="40" y1="250" x2="240" y2="250" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
       <line x1="180" y1="30" x2="180" y2="300" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-      <circle cx="290" cy="80" r="55" fill="none" stroke="#a855f7" stroke-width="2"/>
-      <circle cx="290" cy="80" r="35" fill="#a855f7" opacity="0.3"/>
+      <circle cx="290" cy="80" r="55" fill="none" stroke="#a78bfa" stroke-width="2"/>
+      <circle cx="290" cy="80" r="35" fill="#a78bfa" opacity="0.3"/>
       <line x1="160" y1="440" x2="360" y2="280" stroke="#facc15" stroke-width="1.5" opacity="0.6"/>
-      <text x="60" y="210" font-family="Fraunces,Georgia,serif" font-size="160" font-weight="900" font-style="italic" fill="rgba(255,255,255,0.1)">P</text>
-      <g opacity="0.5">
-        <circle cx="210" cy="145" r="2.5" fill="#facc15"/>
-        <circle cx="225" cy="145" r="2.5" fill="#facc15"/>
-        <circle cx="240" cy="145" r="2.5" fill="#facc15"/>
-        <circle cx="255" cy="145" r="2.5" fill="#facc15"/>
-        <circle cx="210" cy="160" r="2.5" fill="#facc15"/>
-        <circle cx="225" cy="160" r="2.5" fill="#facc15"/>
-        <circle cx="240" cy="160" r="2.5" fill="#facc15"/>
-        <circle cx="255" cy="160" r="2.5" fill="#facc15"/>
-      </g>
+      <text x="60" y="210" font-family="Fraunces,Georgia,serif" font-size="160" font-weight="900" font-style="italic" fill="rgba(255,255,255,0.1)" aria-hidden="true">P</text>
+      <circle cx="210" cy="145" r="2.5" fill="#facc15" opacity="0.5"/>
+      <circle cx="225" cy="145" r="2.5" fill="#facc15" opacity="0.5"/>
+      <circle cx="240" cy="145" r="2.5" fill="#facc15" opacity="0.5"/>
+      <circle cx="255" cy="145" r="2.5" fill="#facc15" opacity="0.5"/>
+      <circle cx="210" cy="160" r="2.5" fill="#facc15" opacity="0.5"/>
+      <circle cx="225" cy="160" r="2.5" fill="#facc15" opacity="0.5"/>
+      <circle cx="240" cy="160" r="2.5" fill="#facc15" opacity="0.5"/>
+      <circle cx="255" cy="160" r="2.5" fill="#facc15" opacity="0.5"/>
       <text x="50" y="310" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(255,255,255,0.7)" letter-spacing="2">AI LITERACY</text>
       <text x="50" y="328" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(255,255,255,0.5)" letter-spacing="2">TRANSLINGUALISM</text>
       <text x="50" y="346" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">RHETORIC</text>
@@ -387,245 +403,305 @@ footer{background:var(--bk);border-top:2px solid var(--pu);padding:1.5rem 3rem;d
       <text x="210" y="382" font-family="IBM Plex Mono,monospace" font-size="8" fill="rgba(255,255,255,0.4)" letter-spacing="2">PUBLICATIONS</text>
       <text x="300" y="365" font-family="Fraunces,Georgia,serif" font-size="36" font-weight="900" font-style="italic" fill="rgba(255,255,255,0.9)">5</text>
       <text x="300" y="382" font-family="IBM Plex Mono,monospace" font-size="8" fill="rgba(255,255,255,0.4)" letter-spacing="2">DEGREES</text>
-      <rect x="40" y="440" width="320" height="24" fill="rgba(124,58,237,0.3)" rx="0"/>
+      <rect x="40" y="440" width="320" height="24" fill="rgba(124,58,237,0.3)"/>
       <text x="200" y="456" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="3">SÃO PAULO → KISSIMMEE FL</text>
     </svg>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker">
+<!-- TICKER — marked as decorative -->
+<div class="ticker" aria-hidden="true">
   <div class="ticker-track">
     <span>Pesquisadora</span><span class="dot">◆</span><span>PhD Candidate · Text &amp; Technology</span><span class="dot">◆</span><span>AI Literacy</span><span class="dot">◆</span><span>Translingualism</span><span class="dot">◆</span><span>UCF Writing &amp; Rhetoric</span><span class="dot">◆</span><span>Creative Writing</span><span class="dot">◆</span><span>São Paulo → Orlando</span><span class="dot">◆</span><span>Escritora</span><span class="dot">◆</span><span>K-Pop Studies</span><span class="dot">◆</span><span>Educadora</span><span class="dot">◆</span><span>Pesquisadora</span><span class="dot">◆</span><span>PhD Candidate · Text &amp; Technology</span><span class="dot">◆</span><span>AI Literacy</span><span class="dot">◆</span><span>Translingualism</span><span class="dot">◆</span><span>UCF Writing &amp; Rhetoric</span><span class="dot">◆</span><span>Creative Writing</span><span class="dot">◆</span><span>São Paulo → Orlando</span><span class="dot">◆</span><span>Escritora</span><span class="dot">◆</span><span>K-Pop Studies</span><span class="dot">◆</span><span>Educadora</span><span class="dot">◆</span>
   </div>
 </div>
 
-<!-- ABOUT STRIP with full portrait -->
-<section class="about-strip reveal" id="about">
+<!-- ABOUT -->
+<section class="about-strip reveal" id="about" aria-labelledby="about-heading">
   <div class="about-photo">
-    <div class="about-photo-bar"></div>
-    <img src="images/portrait.jpg" alt="Priscila Schilaro Santa Rosa">
+    <div class="about-photo-bar" aria-hidden="true"></div>
+    <img src="images/portrait.jpg" alt="Priscila Schilaro Santa Rosa, PhD candidate at the University of Central Florida">
   </div>
   <div class="about-text">
-    <div class="about-kicker">// ABOUT · SOBRE MIM</div>
-    <div class="about-name">Researcher,<br><em>writer,</em><br>educator.</div>
-    <p class="about-body">A Brazilian-born academic and creative writer based in Kissimmee, FL. I research the intersections of AI writing tools, multilingual literacy, and rhetoric at UCF — while also publishing fiction, writing screenplays, and teaching composition. Formerly an Art Director in São Paulo for 8 years. I believe language is how we cross borders.</p>
-    <div class="about-stats">
-      <div><span class="about-stat-n">10+</span><span class="about-stat-l">Publications</span></div>
-      <div><span class="about-stat-n">7+</span><span class="about-stat-l">Conferences</span></div>
-      <div><span class="about-stat-n">5</span><span class="about-stat-l">Degrees</span></div>
-      <div><span class="about-stat-n">2</span><span class="about-stat-l">Languages</span></div>
+    <p class="about-kicker">// ABOUT · <span lang="pt">SOBRE MIM</span></p>
+    <h2 class="about-name" id="about-heading">Researcher,<br><em>writer,</em><br>educator.</h2>
+    <p class="about-body">A Brazilian-born academic and creative writer based in Kissimmee, FL. I research the intersections of AI writing tools, multilingual literacy, and rhetoric at UCF — while also publishing fiction, writing screenplays, and teaching composition. Formerly an Art Director in <span lang="pt">São Paulo</span> for 8 years. I believe language is how we cross borders.</p>
+    <div class="about-stats" role="list" aria-label="Key statistics">
+      <div role="listitem"><span class="about-stat-n" aria-label="More than 10">10+</span><span class="about-stat-l">Publications</span></div>
+      <div role="listitem"><span class="about-stat-n" aria-label="More than 7">7+</span><span class="about-stat-l">Conferences</span></div>
+      <div role="listitem"><span class="about-stat-n">5</span><span class="about-stat-l">Degrees</span></div>
+      <div role="listitem"><span class="about-stat-n">2</span><span class="about-stat-l">Languages</span></div>
     </div>
   </div>
 </section>
 
 <!-- EDUCATION -->
-<section class="bento reveal" id="edu">
+<section class="bento reveal" id="edu" aria-labelledby="edu-heading">
   <div class="sec-head">
-    <span class="sec-label">01</span>
-    <h2 class="sec-title">Academic <em>Formation</em></h2>
-    <div class="sec-rule"></div>
+    <span class="sec-label" aria-hidden="true">01</span>
+    <h2 class="sec-title" id="edu-heading">Academic <em>Formation</em></h2>
+    <div class="sec-rule" aria-hidden="true"></div>
   </div>
   <div class="bento-grid">
-    <div class="bento-cell bc-1 reveal"><div class="bc-num">01</div><div class="bc-deg">Ph.D. in Text &amp; Technology</div><div class="bc-school">University of Central Florida · Winter Park FL</div><div class="bc-yr">Expected Fall 2028</div></div>
-    <div class="bento-cell bc-2 reveal"><div class="bc-num">02</div><div class="bc-deg">M.A. in Rhetoric &amp; Composition</div><div class="bc-school">University of Central Florida</div><div class="bc-yr">Fall 2024</div></div>
-    <div class="bento-cell bc-3 reveal"><div class="bc-num">03</div><div class="bc-deg">B.A. in English</div><div class="bc-school">University of Central Florida</div><span class="bc-badge">Creative Writing + W&amp;R</span><div class="bc-yr">Fall 2022</div></div>
-    <div class="bento-cell bc-4 reveal"><div class="bc-num">04</div><div class="bc-deg">B.F.A. Creative Writing for Entertainment</div><div class="bc-school">Full Sail University</div><span class="bc-badge">4.0 GPA · Valedictorian</span><div class="bc-yr">2018</div></div>
-    <div class="bento-cell bc-5 reveal"><div class="bc-num">05</div><div class="bc-deg">B.S. in Social Communications</div><div class="bc-school">ESPM · São Paulo, Brasil</div><div class="bc-yr">2008</div></div>
-    <div class="bento-cell bc-6 reveal"><div class="bc-num">SP</div><div><div class="bc-deg" style="color:var(--bk)">AILB — Academia Internacional de Literatura Brasileira</div><div class="bc-school">Member · Bilingual: English + Português</div></div></div>
+    <article class="bento-cell bc-1 reveal">
+      <div class="bc-num" aria-hidden="true">01</div>
+      <h3 class="bc-deg">Ph.D. in Text &amp; Technology</h3>
+      <p class="bc-school">University of Central Florida · Winter Park FL</p>
+      <p class="bc-yr">Expected Fall 2028</p>
+    </article>
+    <article class="bento-cell bc-2 reveal">
+      <div class="bc-num" aria-hidden="true">02</div>
+      <h3 class="bc-deg">M.A. in Rhetoric &amp; Composition</h3>
+      <p class="bc-school">University of Central Florida</p>
+      <p class="bc-yr">Fall 2024</p>
+    </article>
+    <article class="bento-cell bc-3 reveal">
+      <div class="bc-num" aria-hidden="true">03</div>
+      <h3 class="bc-deg">B.A. in English</h3>
+      <p class="bc-school">University of Central Florida</p>
+      <span class="bc-badge">Creative Writing + W&amp;R</span>
+      <p class="bc-yr">Fall 2022</p>
+    </article>
+    <article class="bento-cell bc-4 reveal">
+      <div class="bc-num" aria-hidden="true">04</div>
+      <h3 class="bc-deg">B.F.A. Creative Writing for Entertainment</h3>
+      <p class="bc-school">Full Sail University</p>
+      <span class="bc-badge">4.0 GPA · Valedictorian</span>
+      <p class="bc-yr">2018</p>
+    </article>
+    <article class="bento-cell bc-5 reveal">
+      <div class="bc-num" aria-hidden="true">05</div>
+      <h3 class="bc-deg">B.S. in Social Communications</h3>
+      <p class="bc-school"><span lang="pt">ESPM · São Paulo, Brasil</span></p>
+      <p class="bc-yr">2008</p>
+    </article>
+    <div class="bento-cell bc-6 reveal">
+      <div class="bc-num" aria-hidden="true">SP</div>
+      <div>
+        <p class="bc-deg" style="color:#1c1917">AILB — <span lang="pt">Academia Internacional de Literatura Brasileira</span></p>
+        <p class="bc-school">Member · Bilingual: English + <span lang="pt">Português</span></p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- PUBLICATIONS — draped with contemplative statue photo -->
-<section class="pub-section" id="pub">
+<!-- PUBLICATIONS -->
+<section class="pub-section" id="pub" aria-labelledby="pub-heading">
   <div class="pub-statue-panel">
-    <img class="pub-statue-img" src="images/statue-1.jpg" alt="Contemplative bronze sculpture">
-    <div class="pub-statue-overlay"></div>
+    <img class="pub-statue-img" src="images/statue-1.jpg" alt="" aria-hidden="true">
+    <div class="pub-statue-overlay" aria-hidden="true"></div>
     <div class="pub-statue-text reveal">
       <div class="sec-head" style="margin-bottom:0">
-        <span class="sec-label">02</span>
-        <h2 class="sec-title">Published <em>Work</em></h2>
-        <div class="sec-rule"></div>
+        <span class="sec-label" aria-hidden="true">02</span>
+        <h2 class="sec-title" id="pub-heading">Published <em>Work</em></h2>
+        <div class="sec-rule" aria-hidden="true"></div>
       </div>
     </div>
   </div>
   <div class="pub-inner">
     <div class="pub-grid">
       <div class="pub-col reveal-left">
-        <div class="pub-col-head">Articles / Artigos</div>
-        <div class="pub-entry"><div class="pe-t">"AI Detectors Can Stop International Students from Plagiarizing: Educators Should Prioritize Conversation, Trust-Building, and Lived Experience as Part of Critical AI Literacy"</div><div class="pe-v">with Sherry Rankins-Robertson · Bad Ideas About AI and Writing</div><div class="pe-y">FORTHCOMING 2026</div></div>
-        <div class="pub-entry"><div class="pe-t">"What About the Writing Center?"</div><div class="pe-v">Monday Messages</div><div class="pe-y">APRIL 2023</div></div>
-        <div class="pub-entry"><div class="pe-t">"Building Communities Beyond Borders: The Translingual Practices of Transnational Fans of Korean Pop Culture"</div><div class="pe-v">Convergence/Rhetoric</div><div class="pe-y">FALL 2022</div></div>
-        <div class="pub-entry"><div class="pe-t">"Woes of First Sentences"</div><div class="pe-v">Just Write!, vol. 1, no. 1</div><div class="pe-y">MARCH 2021</div></div>
-        <div class="pub-entry"><div class="pe-t">"For Years, I Was Convinced That My Painful Periods Were Normal. They Weren't."</div><div class="pe-v">POPSUGAR</div><div class="pe-y">2019</div></div>
+        <h3 class="pub-col-head">Articles / <span lang="pt">Artigos</span></h3>
+        <article class="pub-entry"><p class="pe-t">"AI Detectors Can Stop International Students from Plagiarizing: Educators Should Prioritize Conversation, Trust-Building, and Lived Experience as Part of Critical AI Literacy"</p><p class="pe-v">with Sherry Rankins-Robertson · Bad Ideas About AI and Writing</p><p class="pe-y">FORTHCOMING 2026</p></article>
+        <article class="pub-entry"><p class="pe-t">"What About the Writing Center?"</p><p class="pe-v">Monday Messages</p><p class="pe-y">APRIL 2023</p></article>
+        <article class="pub-entry"><p class="pe-t">"Building Communities Beyond Borders: The Translingual Practices of Transnational Fans of Korean Pop Culture"</p><p class="pe-v">Convergence/Rhetoric</p><p class="pe-y">FALL 2022</p></article>
+        <article class="pub-entry"><p class="pe-t">"Woes of First Sentences"</p><p class="pe-v">Just Write!, vol. 1, no. 1</p><p class="pe-y">MARCH 2021</p></article>
+        <article class="pub-entry"><p class="pe-t">"For Years, I Was Convinced That My Painful Periods Were Normal. They Weren't."</p><p class="pe-v">POPSUGAR</p><p class="pe-y">2019</p></article>
       </div>
       <div class="pub-col reveal-right">
-        <div class="pub-col-head green">Fiction &amp; Film / Ficção &amp; Cinema</div>
-        <div class="pub-entry"><div class="pe-t">"The Exquisite Artifacts of Sir Drustan the Bold"</div><div class="pe-v">The Wyldblood Magazine</div><div class="pe-y">JANUARY 2022</div></div>
-        <div class="pub-entry"><div class="pe-t">"Reheated Rice"</div><div class="pe-v">Olit Magazine</div><div class="pe-y">JANUARY 2022</div></div>
-        <div class="pub-entry"><div class="pe-t">"Death in the Kitchen"</div><div class="pe-v">Dime Show Review</div><div class="pe-y">2017</div></div>
-        <div class="pub-entry"><div class="pe-t">"Final Call"</div><div class="pe-v">Scarlet Leaf Review</div><div class="pe-y">2017</div></div>
-        <div class="pub-entry"><div class="pe-t">Mrs. Novak <span style="font-style:normal;font-size:0.8em;color:rgba(255,255,255,0.25)">[short film]</span></div><div class="pe-v">Written by Priscila · Dir. Maria Rivas</div><div class="pe-y">2019</div></div>
-        <div class="pub-entry"><div class="pe-t">Soundproof &amp; Compliance <span style="font-style:normal;font-size:0.8em;color:rgba(255,255,255,0.25)">[short films]</span></div><div class="pe-v">Set Vision Studios</div><div class="pe-y">2018</div></div>
+        <h3 class="pub-col-head green">Fiction &amp; Film / <span lang="pt">Ficção &amp; Cinema</span></h3>
+        <article class="pub-entry"><p class="pe-t">"The Exquisite Artifacts of Sir Drustan the Bold"</p><p class="pe-v">The Wyldblood Magazine</p><p class="pe-y">JANUARY 2022</p></article>
+        <article class="pub-entry"><p class="pe-t">"Reheated Rice"</p><p class="pe-v">Olit Magazine</p><p class="pe-y">JANUARY 2022</p></article>
+        <article class="pub-entry"><p class="pe-t">"Death in the Kitchen"</p><p class="pe-v">Dime Show Review</p><p class="pe-y">2017</p></article>
+        <article class="pub-entry"><p class="pe-t">"Final Call"</p><p class="pe-v">Scarlet Leaf Review</p><p class="pe-y">2017</p></article>
+        <article class="pub-entry"><p class="pe-t">Mrs. Novak <span style="font-style:normal;font-size:0.85em;color:#a1a1aa">[short film]</span></p><p class="pe-v">Written by Priscila · Dir. Maria Rivas</p><p class="pe-y">2019</p></article>
+        <article class="pub-entry"><p class="pe-t">Soundproof &amp; Compliance <span style="font-style:normal;font-size:0.85em;color:#a1a1aa">[short films]</span></p><p class="pe-v">Set Vision Studios</p><p class="pe-y">2018</p></article>
       </div>
     </div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section class="xp-section" id="xp">
+<section class="xp-section" id="xp" aria-labelledby="xp-heading">
   <div class="sec-head reveal">
-    <span class="sec-label">03</span>
-    <h2 class="sec-title">Professional <em>History</em></h2>
-    <div class="sec-rule"></div>
+    <span class="sec-label" aria-hidden="true">03</span>
+    <h2 class="sec-title" id="xp-heading">Professional <em>History</em></h2>
+    <div class="sec-rule" aria-hidden="true"></div>
   </div>
-  <div class="xp-drag-hint reveal">← drag to explore →</div>
-  <div class="xp-scroll-wrap" id="xp-scroll">
+  <p class="xp-drag-hint reveal" aria-label="Scrollable cards — use arrow keys or drag to browse">← Use arrow keys or drag to explore →</p>
+  <div class="xp-scroll-wrap" id="xp-scroll" role="region" aria-label="Professional experience cards" tabindex="0">
     <div class="xp-cards">
-      <div class="xp-card"><div class="xp-date">FALL 2023 – PRESENT</div><div class="xp-role">Graduate Teaching Assistant</div><div class="xp-org">Dept. of Writing &amp; Rhetoric · UCF</div><div class="xp-pts"><div class="xp-pt">Teaching ENC 1101 and ENC 1102 — English Composition I &amp; II</div><div class="xp-pt">Supervised by Dr. Shane Wood</div></div></div>
-      <div class="xp-card"><div class="xp-date">FALL 2022 – SPRING 2023</div><div class="xp-role">Graduate Assistant</div><div class="xp-org">Dept. of Writing &amp; Rhetoric · UCF</div><div class="xp-pts"><div class="xp-pt">Writing Across the Curriculum projects with Dr. Pinkert</div><div class="xp-pt">National Day on Writing 2022 — design &amp; activity table</div><div class="xp-pt">WAC website and research proposal contributions</div></div></div>
-      <div class="xp-card green"><div class="xp-date">FALL 2020 – FALL 2021</div><div class="xp-role">Writing Tutor</div><div class="xp-org">UCF Writing Center</div><div class="xp-pts"><div class="xp-pt">Scaffolding, rhetorical listening &amp; activity theory</div><div class="xp-pt">APA, Chicago, MLA formatting support</div><div class="xp-pt">Flash Fiction, Student Misconduct &amp; Newsletter committees</div></div></div>
-      <div class="xp-card green"><div class="xp-date">JAN – DEC 2019</div><div class="xp-role">Assistant Editor &amp; Intern</div><div class="xp-org">Underline Publishing · Beating Windward Press</div><div class="xp-pts"><div class="xp-pt">Portuguese–English translation editing</div><div class="xp-pt">Book interior formatting &amp; cover design</div><div class="xp-pt">IngramSpark &amp; Amazon print preparation</div></div></div>
-      <div class="xp-card yellow"><div class="xp-date">2018 – 2019</div><div class="xp-role">Freelance Writer</div><div class="xp-org">POPSUGAR · Jornal Brasileiras &amp; Brasileiros</div><div class="xp-pts"><div class="xp-pt">Online contributor for POPSUGAR magazine</div><div class="xp-pt">Columnist for Brazilian-American newspaper</div></div></div>
-      <div class="xp-card yellow"><div class="xp-date">2007 – 2015</div><div class="xp-role">Art Director</div><div class="xp-org">Cornerstone Branding Brasil · São Paulo</div><div class="xp-pts"><div class="xp-pt">Brand &amp; marketing strategy for international clients</div><div class="xp-pt">Hired and mentored interns in a fast-paced creative studio</div></div></div>
+      <article class="xp-card"><p class="xp-date">FALL 2023 – PRESENT</p><h3 class="xp-role">Graduate Teaching Assistant</h3><p class="xp-org">Dept. of Writing &amp; Rhetoric · UCF</p><ul class="xp-pts" style="list-style:none"><li class="xp-pt">Teaching ENC 1101 and ENC 1102 — English Composition I &amp; II</li><li class="xp-pt">Supervised by Dr. Shane Wood</li></ul></article>
+      <article class="xp-card"><p class="xp-date">FALL 2022 – SPRING 2023</p><h3 class="xp-role">Graduate Assistant</h3><p class="xp-org">Dept. of Writing &amp; Rhetoric · UCF</p><ul class="xp-pts" style="list-style:none"><li class="xp-pt">Writing Across the Curriculum projects with Dr. Pinkert</li><li class="xp-pt">National Day on Writing 2022 — design &amp; activity table</li><li class="xp-pt">WAC website and research proposal contributions</li></ul></article>
+      <article class="xp-card green"><p class="xp-date">FALL 2020 – FALL 2021</p><h3 class="xp-role">Writing Tutor</h3><p class="xp-org">UCF Writing Center</p><ul class="xp-pts" style="list-style:none"><li class="xp-pt">Scaffolding, rhetorical listening &amp; activity theory</li><li class="xp-pt">APA, Chicago, MLA formatting support</li><li class="xp-pt">Flash Fiction, Student Misconduct &amp; Newsletter committees</li></ul></article>
+      <article class="xp-card green"><p class="xp-date">JAN – DEC 2019</p><h3 class="xp-role">Assistant Editor &amp; Intern</h3><p class="xp-org">Underline Publishing · Beating Windward Press</p><ul class="xp-pts" style="list-style:none"><li class="xp-pt"><span lang="pt">Português</span>–English translation editing</li><li class="xp-pt">Book interior formatting &amp; cover design</li><li class="xp-pt">IngramSpark &amp; Amazon print preparation</li></ul></article>
+      <article class="xp-card yellow"><p class="xp-date">2018 – 2019</p><h3 class="xp-role">Freelance Writer</h3><p class="xp-org">POPSUGAR · <span lang="pt">Jornal Brasileiras &amp; Brasileiros</span></p><ul class="xp-pts" style="list-style:none"><li class="xp-pt">Online contributor for POPSUGAR magazine</li><li class="xp-pt">Columnist for Brazilian-American newspaper</li></ul></article>
+      <article class="xp-card yellow"><p class="xp-date">2007 – 2015</p><h3 class="xp-role">Art Director</h3><p class="xp-org"><span lang="pt">Cornerstone Branding Brasil · São Paulo</span></p><ul class="xp-pts" style="list-style:none"><li class="xp-pt">Brand &amp; marketing strategy for international clients</li><li class="xp-pt">Hired and mentored interns in a fast-paced creative studio</li></ul></article>
     </div>
   </div>
 </section>
 
-<!-- TALKS — draped with David statue photo, purple-tinted -->
-<section class="talks-section" id="talks">
+<!-- TALKS -->
+<section class="talks-section" id="talks" aria-labelledby="talks-heading">
   <div class="talks-statue-panel">
-    <img class="talks-statue-img" src="images/statue-2.jpg" alt="Classical sculpture against sky">
-    <div class="talks-statue-overlay"></div>
+    <img class="talks-statue-img" src="images/statue-2.jpg" alt="" aria-hidden="true">
+    <div class="talks-statue-overlay" aria-hidden="true"></div>
     <div class="talks-statue-text reveal">
       <div class="sec-head" style="margin-bottom:0">
-        <span class="sec-label">04</span>
-        <h2 class="sec-title">Conference <em>Talks</em></h2>
-        <div class="sec-rule"></div>
+        <span class="sec-label" aria-hidden="true">04</span>
+        <h2 class="sec-title" id="talks-heading">Conference <em>Talks</em></h2>
+        <div class="sec-rule" aria-hidden="true"></div>
       </div>
     </div>
   </div>
   <div class="talks-inner">
-    <div class="talks-bg-num">7</div>
-    <div class="talks-list">
-      <div class="talk-row reveal"><div class="talk-n">25</div><div><div class="talk-t">"IA: tecnologia, comunicação e linguagem"</div><div class="talk-v">FOCUS BRASIL</div></div><div class="talk-yr">NOV 2025</div></div>
-      <div class="talk-row reveal"><div class="talk-n">24</div><div><div class="talk-t">"Machine Writing and the Work of Rhetoric and Composition — Open Roundtable"</div><div class="talk-v">2024 CCCC Fall Virtual Institute</div></div><div class="talk-yr">OCT 2024</div></div>
-      <div class="talk-row reveal"><div class="talk-n">24</div><div><div class="talk-t">"The Abundance of Global Black Rhetorics"</div><div class="talk-v">2024 CCCC Annual Convention · Spokane WA</div></div><div class="talk-yr">APR 2024</div></div>
-      <div class="talk-row reveal"><div class="talk-n">23</div><div><div class="talk-t">"What Will AI Tools Like ChatGPT Mean for Composition Students, Teachers, and Programs?"</div><div class="talk-v">Composition Curriculum Alignment Meeting · UCF</div></div><div class="talk-yr">MAR 2023</div></div>
-      <div class="talk-row reveal"><div class="talk-n">23</div><div><div class="talk-t">"Building Communities Beyond Borders: Translingual Practices of Transnational K-Pop Fans"</div><div class="talk-v">Knights' Write · UCF</div></div><div class="talk-yr">SPR 2023</div></div>
-      <div class="talk-row reveal"><div class="talk-n">22</div><div><div class="talk-t">"Creator vs. Consumer: Applying Rhetorical Listening to Video Game Critiques"</div><div class="talk-v">Writing Fest UCF</div></div><div class="talk-yr">FEB 2022</div></div>
-      <div class="talk-row reveal"><div class="talk-n">19</div><div><div class="talk-t">"Os Desafios do Escritor Brasileiro em Língua Inglesa"</div><div class="talk-v">Encontro de Escritores Brasileiros nos EUA · New York</div></div><div class="talk-yr">SEP 2019</div></div>
-    </div>
+    <div class="talks-bg-num" aria-hidden="true">7</div>
+    <ol class="talks-list" aria-label="Conference presentations, most recent first" reversed>
+      <li class="talk-row reveal"><span class="talk-n" aria-hidden="true">25</span><div><p class="talk-t">"<span lang="pt">IA: tecnologia, comunicação e linguagem</span>" (AI: Technology, Communication, and Language)</p><p class="talk-v">FOCUS BRASIL</p></div><time class="talk-yr" datetime="2025-11">NOV 2025</time></li>
+      <li class="talk-row reveal"><span class="talk-n" aria-hidden="true">24</span><div><p class="talk-t">"Machine Writing and the Work of Rhetoric and Composition — Open Roundtable"</p><p class="talk-v">2024 CCCC Fall Virtual Institute</p></div><time class="talk-yr" datetime="2024-10">OCT 2024</time></li>
+      <li class="talk-row reveal"><span class="talk-n" aria-hidden="true">24</span><div><p class="talk-t">"The Abundance of Global Black Rhetorics"</p><p class="talk-v">2024 CCCC Annual Convention · Spokane WA</p></div><time class="talk-yr" datetime="2024-04">APR 2024</time></li>
+      <li class="talk-row reveal"><span class="talk-n" aria-hidden="true">23</span><div><p class="talk-t">"What Will AI Tools Like ChatGPT Mean for Composition Students, Teachers, and Programs?"</p><p class="talk-v">Composition Curriculum Alignment Meeting · UCF</p></div><time class="talk-yr" datetime="2023-03">MAR 2023</time></li>
+      <li class="talk-row reveal"><span class="talk-n" aria-hidden="true">23</span><div><p class="talk-t">"Building Communities Beyond Borders: Translingual Practices of Transnational K-Pop Fans"</p><p class="talk-v">Knights' Write · UCF</p></div><time class="talk-yr" datetime="2023">SPR 2023</time></li>
+      <li class="talk-row reveal"><span class="talk-n" aria-hidden="true">22</span><div><p class="talk-t">"Creator vs. Consumer: Applying Rhetorical Listening to Video Game Critiques"</p><p class="talk-v">Writing Fest UCF</p></div><time class="talk-yr" datetime="2022-02">FEB 2022</time></li>
+      <li class="talk-row reveal"><span class="talk-n" aria-hidden="true">19</span><div><p class="talk-t">"<span lang="pt">Os Desafios do Escritor Brasileiro em Língua Inglesa</span>" (The Challenges Brazilian Writers Face When Writing in English)</p><p class="talk-v"><span lang="pt">Encontro de Escritores Brasileiros nos EUA</span> · New York</p></div><time class="talk-yr" datetime="2019-09">SEP 2019</time></li>
+    </ol>
   </div>
 </section>
 
 <!-- RESEARCH -->
-<section class="research-section" id="research">
-  <div class="research-bg">R</div>
+<section class="research-section" id="research" aria-labelledby="research-heading">
+  <div class="research-bg" aria-hidden="true">R</div>
   <div class="sec-head reveal">
-    <span class="sec-label wh">05</span>
-    <h2 class="sec-title" style="color:#fff">Research <em style="color:var(--ye)">Interests</em></h2>
-    <div class="sec-rule" style="background:rgba(255,255,255,0.2)"></div>
+    <span class="sec-label wh" aria-hidden="true">05</span>
+    <h2 class="sec-title" id="research-heading" style="color:#fff">Research <em style="color:var(--ye)">Interests</em></h2>
+    <div class="sec-rule" style="background:rgba(255,255,255,0.2)" aria-hidden="true"></div>
   </div>
-  <div class="tag-cloud reveal">
-    <span class="rtag featured" onclick="this.classList.toggle('active')">Large Language Models</span>
-    <span class="rtag featured" onclick="this.classList.toggle('active')">Automated Writing Tools</span>
-    <span class="rtag featured" onclick="this.classList.toggle('active')">Translingualism</span>
-    <span class="rtag" onclick="this.classList.toggle('active')">Writing Center Pedagogy</span>
-    <span class="rtag" onclick="this.classList.toggle('active')">Transmedia Storytelling</span>
-    <span class="rtag" onclick="this.classList.toggle('active')">Transnational Literacy</span>
-    <span class="rtag featured" onclick="this.classList.toggle('active')">Multilingual Literacy Practices</span>
-    <span class="rtag" onclick="this.classList.toggle('active')">New Media</span>
-    <span class="rtag" onclick="this.classList.toggle('active')">Fiction &amp; Creative Nonfiction</span>
-    <span class="rtag" onclick="this.classList.toggle('active')">Popular Culture</span>
-    <span class="rtag" onclick="this.classList.toggle('active')">Latin American Literature</span>
-    <span class="rtag" onclick="this.classList.toggle('active')">Cultural Studies</span>
-    <span class="rtag" onclick="this.classList.toggle('active')">Creative Writing Pedagogy</span>
+  <p style="font-family:var(--mo);font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:1.5rem;letter-spacing:0.05em">Click a topic to highlight it</p>
+  <div class="tag-cloud reveal" role="group" aria-label="Research interest topics — click to toggle">
+    <button class="rtag featured" aria-pressed="false">Large Language Models</button>
+    <button class="rtag featured" aria-pressed="false">Automated Writing Tools</button>
+    <button class="rtag featured" aria-pressed="false">Translingualism</button>
+    <button class="rtag" aria-pressed="false">Writing Center Pedagogy</button>
+    <button class="rtag" aria-pressed="false">Transmedia Storytelling</button>
+    <button class="rtag" aria-pressed="false">Transnational Literacy</button>
+    <button class="rtag featured" aria-pressed="false">Multilingual Literacy Practices</button>
+    <button class="rtag" aria-pressed="false">New Media</button>
+    <button class="rtag" aria-pressed="false">Fiction &amp; Creative Nonfiction</button>
+    <button class="rtag" aria-pressed="false">Popular Culture</button>
+    <button class="rtag" aria-pressed="false">Latin American Literature</button>
+    <button class="rtag" aria-pressed="false">Cultural Studies</button>
+    <button class="rtag" aria-pressed="false">Creative Writing Pedagogy</button>
   </div>
 </section>
 
 <!-- SKILLS + AWARDS -->
-<div class="bottom-panels" id="skills">
+<section class="bottom-panels" id="skills" aria-label="Skills and Awards">
   <div class="panel-skills reveal-left">
     <h2 class="panel-title">Skills &amp;<br><em>Tools</em></h2>
-    <div class="skill-group"><div class="sg-head">Design &amp; Media</div><div class="sg-item">Adobe Photoshop · Illustrator · InDesign</div><div class="sg-item">Dreamweaver · Acrobat</div><div class="sg-item">Premiere · Avid · iMovie</div></div>
-    <div class="skill-group"><div class="sg-head">Technology &amp; Web</div><div class="sg-item">HTML · CSS · WordPress · SEO</div><div class="sg-item">Microsoft Office Suite</div><div class="sg-item">Ren'Py · Twine (Game Design)</div></div>
-    <div class="skill-group"><div class="sg-head">Languages / Idiomas</div><div class="sg-item">English — Proficient</div><div class="sg-item">Português — Fluente (nativo)</div></div>
+    <div class="skill-group"><h3 class="sg-head">Design &amp; Media</h3><p class="sg-item">Adobe Photoshop · Illustrator · InDesign</p><p class="sg-item">Dreamweaver · Acrobat</p><p class="sg-item">Premiere · Avid · iMovie</p></div>
+    <div class="skill-group"><h3 class="sg-head">Technology &amp; Web</h3><p class="sg-item">HTML · CSS · WordPress · SEO</p><p class="sg-item">Microsoft Office Suite</p><p class="sg-item"><span lang="pt">Ren'Py</span> · Twine (Game Design)</p></div>
+    <div class="skill-group"><h3 class="sg-head">Languages / <span lang="pt">Idiomas</span></h3><p class="sg-item">English — Proficient</p><p class="sg-item"><span lang="pt">Português — Fluente (nativo)</span></p></div>
   </div>
   <div class="panel-awards reveal-right">
     <h2 class="panel-title">Awards &amp;<br><em>Honors</em></h2>
-    <div class="award-list">
-      <div class="award-card"><div class="award-t">UCF President's Honor Roll</div><div class="award-m">Fall 2020 · Spring 2021 · Spring 2022 — Perfect 4.0 GPA</div></div>
-      <div class="award-card"><div class="award-t">UCF Dean's List — College of Arts &amp; Humanities</div><div class="award-m">Fall 2020</div></div>
-      <div class="award-card"><div class="award-t">Full Sail Advanced Achievement Award for Creative Writing</div><div class="award-m">2018 — One recipient per graduating class</div></div>
-      <div class="award-card"><div class="award-t">Full Sail Course Director Awards ×9</div><div class="award-m">2018 — Transmedia, TV Writing, Horror/Mystery, Games, Portfolio &amp; more</div></div>
-      <div class="award-card"><div class="award-t">"The Regent" Semi-Finalist &amp; Selected</div><div class="award-m">Finish Line Script Competition &amp; Diversity Film Festival · 2020</div></div>
-      <div class="award-card"><div class="award-t">Full Sail Hall of Fame Scholarship</div><div class="award-m">2017 · Also: Dedication, Global Achievement &amp; EMI Scholarships</div></div>
-    </div>
+    <ul class="award-list" style="list-style:none">
+      <li class="award-card"><h3 class="award-t">UCF President's Honor Roll</h3><p class="award-m">Fall 2020 · Spring 2021 · Spring 2022 — Perfect 4.0 GPA</p></li>
+      <li class="award-card"><h3 class="award-t">UCF Dean's List — College of Arts &amp; Humanities</h3><p class="award-m">Fall 2020</p></li>
+      <li class="award-card"><h3 class="award-t">Full Sail Advanced Achievement Award for Creative Writing</h3><p class="award-m">2018 — One recipient per graduating class</p></li>
+      <li class="award-card"><h3 class="award-t">Full Sail Course Director Awards ×9</h3><p class="award-m">2018 — Transmedia, TV Writing, Horror/Mystery, Games, Portfolio &amp; more</p></li>
+      <li class="award-card"><h3 class="award-t">"The Regent" Semi-Finalist &amp; Selected</h3><p class="award-m">Finish Line Script Competition &amp; Diversity Film Festival · 2020</p></li>
+      <li class="award-card"><h3 class="award-t">Full Sail Hall of Fame Scholarship</h3><p class="award-m">2017 · Also: Dedication, Global Achievement &amp; EMI Scholarships</p></li>
+    </ul>
   </div>
-</div>
+</section>
 
 <!-- CONTACT -->
-<div class="contact-section" id="contact">
+<section class="contact-section" id="contact" aria-labelledby="contact-heading">
   <div class="contact-left">
-    <div class="contact-left-bg">C</div>
-    <h2 class="contact-h reveal-left">Vamos<br><em>conversar.</em></h2>
-    <p class="contact-quote reveal-left">"A linguagem é a nossa forma de atravessar fronteiras." Open to collaborations, speaking invitations, and conversations about the future of writing and AI.</p>
+    <div class="contact-left-bg" aria-hidden="true">C</div>
+    <h2 class="contact-h reveal-left" id="contact-heading"><span lang="pt">Vamos</span><br><em><span lang="pt">conversar.</span></em></h2>
+    <p class="contact-quote reveal-left"><span lang="pt">"A linguagem é a nossa forma de atravessar fronteiras."</span> Open to collaborations, speaking invitations, and conversations about the future of writing and AI.</p>
   </div>
   <div class="contact-right">
-    <div class="c-field reveal"><div class="c-lbl">Location / Localização</div><div class="c-val">Kissimmee, Florida 34746</div></div>
-    <div class="c-field reveal"><div class="c-lbl">Phone / Telefone</div><div class="c-val">321 263 1058</div></div>
-    <div class="c-field reveal"><div class="c-lbl">Institution</div><div class="c-val">University of Central Florida — Writing &amp; Rhetoric</div></div>
-    <div class="c-field reveal"><div class="c-lbl">Academic Status</div><div class="c-val">PhD Candidate, Text &amp; Technology · Expected Fall 2028</div></div>
-    <div class="c-field reveal"><div class="c-lbl">Affiliation</div><div class="c-val">AILB — Academia Internacional de Literatura Brasileira</div></div>
-    <a href="tel:3212631058" class="contact-cta reveal">Call now →</a>
+    <dl>
+      <div class="c-field reveal"><dt class="c-lbl">Location / <span lang="pt">Localização</span></dt><dd class="c-val">Kissimmee, Florida 34746</dd></div>
+      <div class="c-field reveal"><dt class="c-lbl">Phone / <span lang="pt">Telefone</span></dt><dd class="c-val"><a href="tel:+13212631058" style="color:inherit">321 263 1058</a></dd></div>
+      <div class="c-field reveal"><dt class="c-lbl">Institution</dt><dd class="c-val">University of Central Florida — Writing &amp; Rhetoric</dd></div>
+      <div class="c-field reveal"><dt class="c-lbl">Academic Status</dt><dd class="c-val">PhD Candidate, Text &amp; Technology · Expected Fall 2028</dd></div>
+      <div class="c-field reveal"><dt class="c-lbl">Affiliation</dt><dd class="c-val">AILB — <span lang="pt">Academia Internacional de Literatura Brasileira</span></dd></div>
+    </dl>
+    <a href="tel:+13212631058" class="contact-cta reveal">Call now →</a>
   </div>
-</div>
+</section>
+
+</main>
 
 <footer>
   <span class="f-sig">Priscila Schilaro Santa Rosa</span>
-  <span class="f-meta">© 2026 · São Paulo → Kissimmee · UCF</span>
+  <span class="f-meta">© 2026 · <span lang="pt">São Paulo</span> → Kissimmee · UCF</span>
 </footer>
 
+<!-- visually hidden utility class -->
+<style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+
 <script>
+/* cursor glow */
 const glow=document.getElementById('glow');
 document.addEventListener('mousemove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
 
+/* hero canvas particles */
 const canvas=document.getElementById('hero-canvas');
-const ctx=canvas.getContext('2d');
-let W,H,particles=[];
-function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight}
-resize();window.addEventListener('resize',()=>{resize();init()});
-const COLORS=['#7c3aed','#a855f7','#facc15','#16a34a','#ddd6fe'];
-function rand(a,b){return a+Math.random()*(b-a)}
-class Particle{
-  constructor(){this.reset()}
-  reset(){this.x=rand(0,W);this.y=rand(0,H);this.r=rand(1,3);this.color=COLORS[Math.floor(rand(0,COLORS.length))];this.vx=rand(-0.25,0.25);this.vy=rand(-0.25,0.25);this.alpha=rand(0.15,0.6)}
-  draw(){ctx.globalAlpha=this.alpha;ctx.fillStyle=this.color;ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fill()}
-  update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}
-}
-function init(){particles=[];for(let i=0;i<100;i++)particles.push(new Particle())}
-init();
-function loop(){
-  ctx.clearRect(0,0,W,H);ctx.globalAlpha=1;
-  particles.forEach(p=>{p.update();p.draw()});
-  for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
-    const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
-    if(d<90){ctx.globalAlpha=(1-d/90)*0.12;ctx.strokeStyle='#7c3aed';ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke()}
+if(canvas){
+  const ctx=canvas.getContext('2d');
+  let W,H,particles=[];
+  function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight}
+  resize();window.addEventListener('resize',()=>{resize();init()});
+  const COLORS=['#7c3aed','#a78bfa','#facc15','#16a34a','#ddd6fe'];
+  function rand(a,b){return a+Math.random()*(b-a)}
+  class Particle{
+    constructor(){this.reset()}
+    reset(){this.x=rand(0,W);this.y=rand(0,H);this.r=rand(1,3);this.color=COLORS[Math.floor(rand(0,COLORS.length))];this.vx=rand(-0.25,0.25);this.vy=rand(-0.25,0.25);this.alpha=rand(0.15,0.6)}
+    draw(){ctx.globalAlpha=this.alpha;ctx.fillStyle=this.color;ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fill()}
+    update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}
   }
-  requestAnimationFrame(loop);
+  function init(){particles=[];for(let i=0;i<100;i++)particles.push(new Particle())}
+  init();
+  function loop(){
+    ctx.clearRect(0,0,W,H);ctx.globalAlpha=1;
+    particles.forEach(p=>{p.update();p.draw()});
+    for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<90){ctx.globalAlpha=(1-d/90)*0.12;ctx.strokeStyle='#7c3aed';ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke()}
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
 }
-loop();
 
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});},{threshold:0.1});
+/* scroll reveal */
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.1});
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el));
 
+/* drag + keyboard scroll for experience cards */
 const scroller=document.getElementById('xp-scroll');
 let isDown=false,startX,scrollLeft;
 scroller.addEventListener('mousedown',e=>{isDown=true;scroller.style.cursor='grabbing';startX=e.pageX-scroller.offsetLeft;scrollLeft=scroller.scrollLeft});
 scroller.addEventListener('mouseleave',()=>{isDown=false;scroller.style.cursor='grab'});
 scroller.addEventListener('mouseup',()=>{isDown=false;scroller.style.cursor='grab'});
 scroller.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();scroller.scrollLeft=scrollLeft-(e.pageX-scroller.offsetLeft-startX)*1.5});
+/* arrow key support */
+scroller.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){scroller.scrollLeft+=340;e.preventDefault()}
+  if(e.key==='ArrowLeft'){scroller.scrollLeft-=340;e.preventDefault()}
+});
+
+/* research tags toggle with aria-pressed */
+document.querySelectorAll('.rtag').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const pressed=btn.getAttribute('aria-pressed')==='true';
+    btn.setAttribute('aria-pressed',String(!pressed));
+  });
+});
 </script>
 </body>
 </html>
