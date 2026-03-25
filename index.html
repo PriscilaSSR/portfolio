@@ -644,6 +644,153 @@ footer{background:var(--bk);border-top:2px solid var(--pu);padding:1.5rem 3rem;d
 <!-- visually hidden utility class -->
 <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 
+<!-- READ ALOUD TOOLBAR -->
+<style>
+/* ── Floating toolbar ── */
+#tts-bar{
+  position:fixed;bottom:2rem;right:2rem;z-index:1000;
+  background:#18181b;border:1px solid rgba(124,58,237,0.5);
+  border-radius:12px;
+  padding:0.75rem 1rem;
+  display:flex;align-items:center;gap:0.6rem;
+  box-shadow:0 8px 32px rgba(0,0,0,0.6);
+  font-family:'IBM Plex Mono',monospace;
+  transition:opacity 0.2s;
+  min-width:0;
+}
+#tts-bar.collapsed{ padding:0.75rem }
+/* hide label when collapsed */
+#tts-bar.collapsed .tts-label,
+#tts-bar.collapsed #tts-status,
+#tts-bar.collapsed .tts-sep,
+#tts-bar.collapsed #tts-speed-wrap{ display:none }
+
+.tts-label{
+  font-size:11px;letter-spacing:0.14em;color:#a78bfa;
+  white-space:nowrap;
+}
+#tts-status{
+  font-size:11px;color:#a1a1aa;
+  white-space:nowrap;max-width:160px;
+  overflow:hidden;text-overflow:ellipsis;
+}
+.tts-sep{ width:1px;height:20px;background:rgba(255,255,255,0.1);flex-shrink:0 }
+
+/* buttons */
+.tts-btn{
+  width:36px;height:36px;border-radius:8px;
+  background:transparent;border:1px solid rgba(255,255,255,0.12);
+  color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.15s,border-color 0.15s;
+  flex-shrink:0;
+  font-size:14px;
+}
+.tts-btn:hover{ background:rgba(124,58,237,0.3);border-color:#a78bfa }
+.tts-btn:focus-visible{ outline:3px solid #facc15;outline-offset:2px }
+.tts-btn.active{ background:#7c3aed;border-color:#7c3aed }
+#tts-play-pause{ width:40px;height:40px;background:#7c3aed;border-color:#7c3aed;border-radius:10px }
+#tts-play-pause:hover{ background:#a78bfa;border-color:#a78bfa }
+
+/* speed selector */
+#tts-speed-wrap{ display:flex;align-items:center;gap:6px }
+#tts-speed-wrap label{ font-size:10px;color:#71717a;letter-spacing:0.1em }
+#tts-speed{
+  background:#27272a;color:#fff;border:1px solid rgba(255,255,255,0.12);
+  border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;
+  padding:3px 6px;cursor:pointer;
+}
+#tts-speed:focus-visible{ outline:3px solid #facc15 }
+
+/* sentence highlight */
+.tts-speaking{
+  background:rgba(124,58,237,0.25) !important;
+  outline:2px solid rgba(167,139,250,0.6);
+  border-radius:3px;
+  transition:background 0.15s;
+}
+
+/* progress bar under toolbar */
+#tts-progress{
+  position:fixed;bottom:0;left:0;right:0;height:3px;
+  background:rgba(124,58,237,0.15);z-index:999;
+  pointer-events:none;
+}
+#tts-progress-fill{
+  height:100%;background:var(--pu,#7c3aed);
+  width:0%;transition:width 0.3s;
+}
+
+/* notification when TTS unavailable */
+#tts-unavail{
+  position:fixed;bottom:2rem;right:2rem;z-index:1000;
+  background:#18181b;border:1px solid rgba(255,100,100,0.4);
+  color:#fca5a5;font-family:'IBM Plex Mono',monospace;font-size:12px;
+  padding:0.75rem 1.2rem;border-radius:8px;display:none;
+}
+</style>
+
+<!-- Progress bar -->
+<div id="tts-progress" aria-hidden="true"><div id="tts-progress-fill"></div></div>
+
+<!-- Fallback message -->
+<div id="tts-unavail" role="alert">Read aloud not supported in this browser.</div>
+
+<!-- Toolbar -->
+<div id="tts-bar" role="toolbar" aria-label="Read aloud controls">
+  <!-- Toggle collapse -->
+  <button class="tts-btn" id="tts-toggle" aria-label="Toggle read aloud panel" aria-expanded="true" title="Show/hide panel">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>
+    </svg>
+  </button>
+
+  <span class="tts-label" aria-hidden="true">READ ALOUD</span>
+  <div class="tts-sep" aria-hidden="true"></div>
+
+  <!-- Play / Pause -->
+  <button class="tts-btn" id="tts-play-pause" aria-label="Play" aria-pressed="false" title="Play / Pause (Space)">
+    <!-- play icon -->
+    <svg id="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <!-- pause icon — hidden initially -->
+    <svg id="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+  </button>
+
+  <!-- Stop -->
+  <button class="tts-btn" id="tts-stop" aria-label="Stop" title="Stop">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+  </button>
+
+  <!-- Skip back -->
+  <button class="tts-btn" id="tts-prev" aria-label="Previous sentence" title="Previous sentence">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/><line x1="9" y1="18" x2="9" y2="6"/></svg>
+  </button>
+
+  <!-- Skip forward -->
+  <button class="tts-btn" id="tts-next" aria-label="Next sentence" title="Next sentence">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/><line x1="15" y1="18" x2="15" y2="6"/></svg>
+  </button>
+
+  <div class="tts-sep" aria-hidden="true"></div>
+
+  <!-- Speed -->
+  <div id="tts-speed-wrap">
+    <label for="tts-speed">SPEED</label>
+    <select id="tts-speed" aria-label="Reading speed">
+      <option value="0.7">0.7×</option>
+      <option value="0.85">0.85×</option>
+      <option value="1" selected>1×</option>
+      <option value="1.25">1.25×</option>
+      <option value="1.5">1.5×</option>
+      <option value="2">2×</option>
+    </select>
+  </div>
+
+  <!-- Status -->
+  <div class="tts-sep" aria-hidden="true"></div>
+  <span id="tts-status" aria-live="polite" aria-atomic="true">Ready</span>
+</div>
+
 <script>
 /* cursor glow */
 const glow=document.getElementById('glow');
@@ -702,6 +849,174 @@ document.querySelectorAll('.rtag').forEach(btn=>{
     btn.setAttribute('aria-pressed',String(!pressed));
   });
 });
+
+/* ================================================================
+   READ ALOUD ENGINE  —  Web Speech API (built into all modern browsers)
+   ================================================================ */
+(function(){
+  if(!('speechSynthesis' in window)){
+    document.getElementById('tts-unavail').style.display='block';
+    document.getElementById('tts-bar').style.display='none';
+    return;
+  }
+
+  const synth = window.speechSynthesis;
+
+  // Gather all readable elements inside <main>
+  function collectChunks(){
+    const sel = 'main h1,main h2,main h3,main p,main li,main dt,main dd,main time';
+    return Array.from(document.querySelectorAll(sel)).filter(el=>{
+      // skip aria-hidden ancestors
+      let n=el;
+      while(n){ if(n.getAttribute&&n.getAttribute('aria-hidden')==='true') return false; n=n.parentElement; }
+      return el.textContent.trim().length > 0;
+    });
+  }
+
+  let chunks=[], idx=0, playing=false, currentUtterance=null, highlightEl=null;
+
+  const btnPlay   = document.getElementById('tts-play-pause');
+  const btnStop   = document.getElementById('tts-stop');
+  const btnPrev   = document.getElementById('tts-prev');
+  const btnNext   = document.getElementById('tts-next');
+  const btnToggle = document.getElementById('tts-toggle');
+  const speedSel  = document.getElementById('tts-speed');
+  const statusEl  = document.getElementById('tts-status');
+  const progFill  = document.getElementById('tts-progress-fill');
+  const iconPlay  = document.getElementById('icon-play');
+  const iconPause = document.getElementById('icon-pause');
+  const bar       = document.getElementById('tts-bar');
+
+  function setStatus(msg){ statusEl.textContent=msg; }
+  function setProgress(){ progFill.style.width = chunks.length ? ((idx/chunks.length)*100)+'%' : '0%'; }
+
+  function highlight(el){
+    clearHighlight();
+    if(!el) return;
+    el.classList.add('tts-speaking');
+    highlightEl=el;
+    el.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  function clearHighlight(){ if(highlightEl){ highlightEl.classList.remove('tts-speaking'); highlightEl=null; } }
+
+  function setPlayingUI(state){
+    playing=state;
+    btnPlay.setAttribute('aria-pressed',String(state));
+    btnPlay.setAttribute('aria-label', state ? 'Pause' : 'Play');
+    iconPlay.style.display  = state ? 'none' : '';
+    iconPause.style.display = state ? '' : 'none';
+  }
+
+  // Get clean text, skipping sr-only and aria-hidden children
+  function getText(node){
+    if(node.nodeType===3) return node.textContent;
+    if(node.nodeType===1){
+      if(node.classList&&node.classList.contains('sr-only')) return '';
+      if(node.getAttribute&&node.getAttribute('aria-hidden')==='true') return '';
+      return Array.from(node.childNodes).map(getText).join('');
+    }
+    return '';
+  }
+
+  // Detect language from closest lang= ancestor
+  function getLang(el){
+    let n=el;
+    while(n){
+      if(n.getAttribute&&n.getAttribute('lang')){
+        const l=n.getAttribute('lang');
+        return l==='pt' ? 'pt-BR' : l;
+      }
+      n=n.parentElement;
+    }
+    return 'en-US';
+  }
+
+  function speakChunk(i){
+    if(i>=chunks.length){ finish(); return; }
+    idx=i; setProgress();
+    const el=chunks[i];
+    highlight(el);
+    const text=getText(el).replace(/\s+/g,' ').trim();
+    if(!text){ speakChunk(i+1); return; }
+
+    setStatus(text.length>45 ? text.slice(0,42)+'\u2026' : text);
+
+    const utter=new SpeechSynthesisUtterance(text);
+    utter.lang=getLang(el);
+    utter.rate=parseFloat(speedSel.value);
+    utter.onend=()=>{ if(playing) speakChunk(i+1); };
+    utter.onerror=(e)=>{ if(e.error!=='interrupted') speakChunk(i+1); };
+    currentUtterance=utter;
+    synth.speak(utter);
+  }
+
+  function finish(){
+    clearHighlight(); setPlayingUI(false); setStatus('Done');
+    progFill.style.width='100%';
+    setTimeout(()=>{ progFill.style.width='0%'; setStatus('Ready'); idx=0; },1800);
+  }
+
+  function play(){
+    if(synth.paused){ synth.resume(); setPlayingUI(true); setStatus('Resumed'); return; }
+    chunks=collectChunks();
+    if(!chunks.length){ setStatus('Nothing to read'); return; }
+    synth.cancel(); setPlayingUI(true); speakChunk(idx);
+  }
+  function pause(){ synth.pause(); setPlayingUI(false); setStatus('Paused'); clearHighlight(); }
+  function stop(){ synth.cancel(); setPlayingUI(false); clearHighlight(); idx=0; setProgress(); setStatus('Stopped'); }
+  function prev(){
+    synth.cancel();
+    const ni=Math.max(0,idx-1);
+    if(playing) speakChunk(ni); else { idx=ni; chunks=collectChunks(); highlight(chunks[idx]); setProgress(); }
+  }
+  function next(){
+    synth.cancel();
+    chunks=collectChunks();
+    const ni=Math.min(chunks.length-1,idx+1);
+    if(playing) speakChunk(ni); else { idx=ni; highlight(chunks[idx]); setProgress(); }
+  }
+
+  btnPlay.addEventListener('click',()=>{ playing ? pause() : play(); });
+  btnStop.addEventListener('click', stop);
+  btnPrev.addEventListener('click', prev);
+  btnNext.addEventListener('click', next);
+  speedSel.addEventListener('change',()=>{ if(playing){ const i=idx; synth.cancel(); speakChunk(i); } });
+
+  // Collapse / expand toolbar
+  btnToggle.addEventListener('click',()=>{
+    const c=bar.classList.toggle('collapsed');
+    btnToggle.setAttribute('aria-expanded',String(!c));
+    btnToggle.setAttribute('aria-label', c ? 'Expand read aloud panel' : 'Collapse read aloud panel');
+  });
+
+  // Keyboard shortcut: F8 = play/pause from anywhere
+  document.addEventListener('keydown',e=>{
+    if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'||e.target.tagName==='TEXTAREA') return;
+    if(e.key==='F8'){ e.preventDefault(); playing ? pause() : play(); }
+  });
+
+  // "Read this section" hover button injected into every section
+  document.querySelectorAll('main section[aria-labelledby],main section[aria-label]').forEach(sec=>{
+    const btn=document.createElement('button');
+    btn.setAttribute('aria-label','Read this section aloud');
+    btn.style.cssText='position:absolute;top:1rem;right:1rem;z-index:10;background:#7c3aed;color:#fff;border:none;cursor:pointer;font-family:IBM Plex Mono,monospace;font-size:11px;letter-spacing:0.1em;padding:6px 14px;border-radius:6px;opacity:0;transition:opacity 0.2s;';
+    btn.textContent='\u25b6 Read section';
+    sec.style.position='relative';
+    sec.appendChild(btn);
+    const show=()=>btn.style.opacity='1';
+    const hide=()=>btn.style.opacity='0';
+    sec.addEventListener('mouseenter',show);
+    sec.addEventListener('mouseleave',hide);
+    btn.addEventListener('focus',show);
+    btn.addEventListener('blur',hide);
+    btn.addEventListener('click',()=>{
+      chunks=collectChunks().filter(el=>sec.contains(el));
+      idx=0; synth.cancel(); setPlayingUI(true); speakChunk(0);
+    });
+  });
+
+  setTimeout(()=>setStatus('Press F8 or \u25b6 to read page'),600);
+})();
 </script>
 </body>
 </html>
