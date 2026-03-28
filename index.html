@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Priscila Schilaro Santa Rosa — PhD Candidate, Educator, Writer</title>
+<title data-i18n="title">Priscila Schilaro Santa Rosa — PhD Candidate, Educator, Writer</title>
 <meta name="description" content="Academic portfolio of Priscila Schilaro Santa Rosa — PhD candidate in Text & Technology at UCF, researcher, educator, and published writer.">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,900;1,9..144,300;1,9..144,700&family=Syne:wght@400;700;800&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -317,10 +317,92 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
+/* ── ACCESSIBILITY CONTROLS BAR ── */
+.a11y-controls{
+  display:flex;align-items:center;gap:4px;
+  border-left:1px solid rgba(255,255,255,0.08);
+  padding-left:0.8rem;margin-left:0.4rem;
+}
+.a11y-group{display:flex;gap:2px}
+.a11y-sep{width:1px;height:20px;background:rgba(255,255,255,0.1)}
+.a11y-btn{
+  height:32px;min-width:32px;padding:0 6px;
+  background:transparent;border:1px solid rgba(255,255,255,0.12);
+  color:var(--text-dim);cursor:pointer;
+  font-family:var(--mo);font-size:11px;font-weight:700;letter-spacing:0.04em;
+  border-radius:4px;
+  transition:background 0.15s,color 0.15s,border-color 0.15s;
+  display:flex;align-items:center;justify-content:center;
+}
+.a11y-btn:hover{background:rgba(124,58,237,0.25);border-color:var(--pu2);color:#fff}
+.a11y-btn:focus-visible{outline:3px solid var(--ye);outline-offset:2px}
+.a11y-btn[aria-pressed="true"]{background:var(--pu);border-color:var(--pu);color:#fff}
+.lang-btn{
+  font-family:var(--mo);font-size:11px;font-weight:700;letter-spacing:0.1em;
+  color:var(--pu2);border-color:rgba(124,58,237,0.4);min-width:36px;
+}
+.lang-btn:hover{background:rgba(124,58,237,0.25);color:#fff}
+
+/* ── HIGH CONTRAST MODE ── */
+html[data-contrast="high"]{
+  --pu:#b48fff;--pu2:#d8b4fe;
+  --ye:#ffe566;
+  --gr2:#6ee7a0;
+  --text-muted:#e9d5ff;
+  --text-dim:#f4f4f5;
+  --text-sub:#d4d4d8;
+  --bk:#000000;
+}
+html[data-contrast="high"] body{background:#000;color:#fff}
+html[data-contrast="high"] .bento-cell,
+html[data-contrast="high"] .xp-card,
+html[data-contrast="high"] .award-card,
+html[data-contrast="high"] .c-field,
+html[data-contrast="high"] #tts-bar{background:#0a0a0a;border-color:rgba(180,143,255,0.6)}
+html[data-contrast="high"] .pub-section,
+html[data-contrast="high"] .talks-section{background:#000}
+html[data-contrast="high"] .about-strip,
+html[data-contrast="high"] .contact-right{background:#050505}
+html[data-contrast="high"] .research-section{background:#1a0a3e}
+html[data-contrast="high"] .panel-skills{background:#080808}
+html[data-contrast="high"] .panel-awards{background:#040404}
+html[data-contrast="high"] .contact-left{background:#1a0a3e}
+html[data-contrast="high"] nav{background:rgba(0,0,0,0.98)}
+html[data-contrast="high"] .bc-2{background:#3b1fa8}
+html[data-contrast="high"] .bc-5{background:#14532d}
+html[data-contrast="high"] .bc-6{background:#854d0e}
+html[data-contrast="high"] .pe-t,
+html[data-contrast="high"] .talk-t,
+html[data-contrast="high"] .xp-pt,
+html[data-contrast="high"] .about-body{color:#f4f4f5}
+html[data-contrast="high"] .pe-v,
+html[data-contrast="high"] .talk-v,
+html[data-contrast="high"] .xp-org,
+html[data-contrast="high"] .bc-school,
+html[data-contrast="high"] .award-m{color:#d4d4d8}
+html[data-contrast="high"] .rtag{border-color:rgba(255,255,255,0.6);color:#fff}
+html[data-contrast="high"] .sec-rule{background:rgba(255,255,255,0.3)}
+html[data-contrast="high"] .talk-row{border-color:rgba(180,143,255,0.25)}
+html[data-contrast="high"] .pub-entry{border-color:rgba(255,255,255,0.1)}
+html[data-contrast="high"] .pub-col{border-color:rgba(180,143,255,0.2)}
+html[data-contrast="high"] footer{background:#000;border-top-color:var(--pu)}
+
+/* ── FONT SIZE SCALING ── */
+html[data-font="sm"] body{font-size:14px}
+html[data-font="md"] body{font-size:16px}
+html[data-font="lg"] body{font-size:19px}
+html[data-font="xl"] body{font-size:22px}
+html[data-font="lg"] .hero-h1,
+html[data-font="xl"] .hero-h1{font-size:clamp(3rem,6vw,7rem)}
+html[data-font="lg"] .sec-title,
+html[data-font="xl"] .sec-title{font-size:clamp(2rem,4vw,4rem)}
+
 @media(max-width:960px){
+
   nav{padding:0 1.5rem}.nav-links{display:none}
   .hero{grid-template-columns:1fr}.hero-right{display:none}
   .hero-left{padding:5rem 1.5rem 4rem}
+  .a11y-controls{display:none}
   .bento-grid{grid-template-columns:1fr 1fr}.bc-1{grid-column:span 2}.bc-6{grid-column:span 2;flex-direction:column;gap:1rem}
   .pub-grid,.bottom-panels,.contact-section,.about-strip{grid-template-columns:1fr}
   .bento,.xp-section,.research-section,.panel-skills,.panel-awards,.contact-left,.contact-right,.about-text{padding:4rem 1.5rem}
@@ -333,7 +415,7 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
 <body>
 
 <!-- SKIP LINK -->
-<a class="skip-link" href="#main">Skip to main content</a>
+<a class="skip-link" href="#main" data-i18n="skip">Skip to main content</a>
 
 <div class="cursor-glow" id="glow" aria-hidden="true"></div>
 
@@ -341,14 +423,33 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
 <nav aria-label="Main navigation">
   <a href="#main" class="nav-logo" aria-label="Priscila Schilaro Santa Rosa — home">Priscila <span>Schilaro</span> Santa Rosa</a>
   <ul class="nav-links" role="list">
-    <li><a href="#about">About</a></li>
-    <li><a href="#edu">Education</a></li>
-    <li><a href="#pub">Publications</a></li>
-    <li><a href="#xp">Experience</a></li>
-    <li><a href="#talks">Talks</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#edu" data-i18n="nav.edu">Education</a></li>
+    <li><a href="#pub" data-i18n="nav.pub">Publications</a></li>
+    <li><a href="#xp" data-i18n="nav.xp">Experience</a></li>
+    <li><a href="#talks" data-i18n="nav.talks">Talks</a></li>
+    <li><a href="#research" data-i18n="nav.research">Research</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
+  <!-- ACCESSIBILITY + LANGUAGE CONTROLS -->
+  <div class="a11y-controls" role="group" aria-label="Display controls">
+    <!-- Font size -->
+    <div class="a11y-group" aria-label="Font size">
+      <button class="a11y-btn" id="font-down" aria-label="Decrease font size" title="Smaller text">A−</button>
+      <button class="a11y-btn" id="font-reset" aria-label="Reset font size" title="Reset text size">A</button>
+      <button class="a11y-btn" id="font-up" aria-label="Increase font size" title="Larger text">A+</button>
+    </div>
+    <div class="a11y-sep" aria-hidden="true"></div>
+    <!-- High contrast -->
+    <button class="a11y-btn" id="contrast-toggle" aria-label="Toggle high contrast mode" aria-pressed="false" title="High contrast">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20V2z" fill="currentColor" stroke="none"/></svg>
+    </button>
+    <div class="a11y-sep" aria-hidden="true"></div>
+    <!-- Language toggle -->
+    <button class="a11y-btn lang-btn" id="lang-toggle" aria-label="Switch to Portuguese" title="Switch language / Mudar idioma">
+      <span id="lang-label">PT</span>
+    </button>
+  </div>
 </nav>
 
 <main id="main">
@@ -358,7 +459,7 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-left">
     <p class="hero-eyebrow" aria-label="PhD Candidate, Educator, Writer, São Paulo to Orlando">
-      <span lang="pt">PhD Candidate</span> · Educator · Writer · <span lang="pt">São Paulo</span> → Orlando
+      <span data-i18n="hero.eyebrow">PhD Candidate · Educator · Writer · São Paulo → Orlando</span>
     </p>
     <div>
       <h1 class="hero-h1">
@@ -367,13 +468,13 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
         <span class="l3" aria-hidden="true">Santa Rosa</span>
         <span class="sr-only">Santa Rosa</span>
       </h1>
-      <p class="hero-desc">Researching AI writing tools, multilingual literacy, and rhetoric — while never losing sight of the human voice at the center of every text.</p>
+      <p class="hero-desc" data-i18n="hero.desc">I ask who bears the cost when writing systems are not designed with everyone in mind — and what it looks like when they are.</p>
       <div class="hero-actions">
-        <a href="#pub" class="btn-fill">Publications →</a>
-        <a href="#research" class="btn-ghost">Research interests</a>
+        <a href="#pub" class="btn-fill" data-i18n="hero.btn1">Publications →</a>
+        <a href="#research" class="btn-ghost" data-i18n="hero.btn2">Research interests</a>
       </div>
     </div>
-    <p class="hero-footer-note">University of Central Florida · Writing &amp; Rhetoric · Est. 2023</p>
+    <p class="hero-footer-note" data-i18n="hero.note">University of Central Florida · Writing &amp; Rhetoric · Est. 2023</p>
   </div>
   <div class="hero-right" aria-hidden="true">
     <svg class="hero-illustration" viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract modernist composition in purple, yellow and green">
@@ -423,14 +524,14 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
     <img src="images/portrait.jpg" alt="Priscila Schilaro Santa Rosa, PhD candidate at the University of Central Florida">
   </div>
   <div class="about-text">
-    <p class="about-kicker">// ABOUT · <span lang="pt">SOBRE MIM</span></p>
-    <h2 class="about-name" id="about-heading">Researcher,<br><em>writer,</em><br>educator.</h2>
-    <p class="about-body">A Brazilian-born academic and creative writer based in Kissimmee, FL. I research the intersections of AI writing tools, multilingual literacy, and rhetoric at UCF — while also publishing fiction, writing screenplays, and teaching composition. Formerly an Art Director in <span lang="pt">São Paulo</span> for 8 years. I believe language is how we cross borders.</p>
+    <p class="about-kicker" data-i18n="about.kicker">// ABOUT · SOBRE MIM</p>
+    <h2 class="about-name" id="about-heading"><span data-i18n="about.name1">Researcher,</span><br><em data-i18n="about.name2">writer,</em><br><span data-i18n="about.name3">educator.</span></h2>
+    <p class="about-body" data-i18n="about.body">A Brazilian-born academic and writer based in Kissimmee, FL. My research asks whose language gets marked as illegitimate — and who bears the cost when automated systems were never designed with them in mind. I work at the intersections of AI literacy, multilingual writing pedagogy, and rhetoric at UCF, while publishing fiction, writing screenplays, and teaching composition. Formerly an Art Director in São Paulo for 8 years.</p>
     <div class="about-stats" role="list" aria-label="Key statistics">
-      <div role="listitem"><span class="about-stat-n" aria-label="More than 10">10+</span><span class="about-stat-l">Publications</span></div>
-      <div role="listitem"><span class="about-stat-n" aria-label="More than 7">7+</span><span class="about-stat-l">Conferences</span></div>
-      <div role="listitem"><span class="about-stat-n">5</span><span class="about-stat-l">Degrees</span></div>
-      <div role="listitem"><span class="about-stat-n">2</span><span class="about-stat-l">Languages</span></div>
+      <div role="listitem"><span class="about-stat-n" aria-label="More than 10">10+</span><span class="about-stat-l" data-i18n="stats.pub">Publications</span></div>
+      <div role="listitem"><span class="about-stat-n" aria-label="More than 7">7+</span><span class="about-stat-l" data-i18n="stats.conf">Conferences</span></div>
+      <div role="listitem"><span class="about-stat-n">5</span><span class="about-stat-l" data-i18n="stats.deg">Degrees</span></div>
+      <div role="listitem"><span class="about-stat-n">2</span><span class="about-stat-l" data-i18n="stats.lang">Languages</span></div>
     </div>
   </div>
 </section>
@@ -439,7 +540,7 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
 <section class="bento reveal" id="edu" aria-labelledby="edu-heading">
   <div class="sec-head">
     <span class="sec-label" aria-hidden="true">01</span>
-    <h2 class="sec-title" id="edu-heading">Academic <em>Formation</em></h2>
+    <h2 class="sec-title" id="edu-heading"><span data-i18n="sec.edu">Academic</span> <em data-i18n="sec.edu2">Formation</em></h2>
     <div class="sec-rule" aria-hidden="true"></div>
   </div>
   <div class="bento-grid">
@@ -493,7 +594,7 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
     <div class="pub-statue-text reveal">
       <div class="sec-head" style="margin-bottom:0">
         <span class="sec-label" aria-hidden="true">02</span>
-        <h2 class="sec-title" id="pub-heading">Published <em>Work</em></h2>
+        <h2 class="sec-title" id="pub-heading"><span data-i18n="sec.pub">Published</span> <em data-i18n="sec.pub2">Work</em></h2>
         <div class="sec-rule" aria-hidden="true"></div>
       </div>
     </div>
@@ -501,7 +602,7 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
   <div class="pub-inner">
     <div class="pub-grid">
       <div class="pub-col reveal-left">
-        <h3 class="pub-col-head">Articles / <span lang="pt">Artigos</span></h3>
+        <h3 class="pub-col-head" data-i18n="pub.articles">Articles / Artigos</h3>
         <article class="pub-entry"><p class="pe-t">"AI Detectors Can Stop International Students from Plagiarizing: Educators Should Prioritize Conversation, Trust-Building, and Lived Experience as Part of Critical AI Literacy"</p><p class="pe-v">with Sherry Rankins-Robertson · Bad Ideas About AI and Writing</p><p class="pe-y">FORTHCOMING 2026</p></article>
         <article class="pub-entry"><p class="pe-t">"What About the Writing Center?"</p><p class="pe-v">Monday Messages</p><p class="pe-y">APRIL 2023</p></article>
         <article class="pub-entry"><p class="pe-t">"Building Communities Beyond Borders: The Translingual Practices of Transnational Fans of Korean Pop Culture"</p><p class="pe-v">Convergence/Rhetoric</p><p class="pe-y">FALL 2022</p></article>
@@ -509,7 +610,7 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
         <article class="pub-entry"><p class="pe-t">"For Years, I Was Convinced That My Painful Periods Were Normal. They Weren't."</p><p class="pe-v">POPSUGAR</p><p class="pe-y">2019</p></article>
       </div>
       <div class="pub-col reveal-right">
-        <h3 class="pub-col-head green">Fiction &amp; Film / <span lang="pt">Ficção &amp; Cinema</span></h3>
+        <h3 class="pub-col-head green" data-i18n="pub.fiction">Fiction &amp; Film / Ficção &amp; Cinema</h3>
         <article class="pub-entry"><p class="pe-t">"The Exquisite Artifacts of Sir Drustan the Bold"</p><p class="pe-v">The Wyldblood Magazine</p><p class="pe-y">JANUARY 2022</p></article>
         <article class="pub-entry"><p class="pe-t">"Reheated Rice"</p><p class="pe-v">Olit Magazine</p><p class="pe-y">JANUARY 2022</p></article>
         <article class="pub-entry"><p class="pe-t">"Death in the Kitchen"</p><p class="pe-v">Dime Show Review</p><p class="pe-y">2017</p></article>
@@ -525,10 +626,10 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
 <section class="xp-section" id="xp" aria-labelledby="xp-heading">
   <div class="sec-head reveal">
     <span class="sec-label" aria-hidden="true">03</span>
-    <h2 class="sec-title" id="xp-heading">Professional <em>History</em></h2>
+    <h2 class="sec-title" id="xp-heading"><span data-i18n="sec.xp">Professional</span> <em data-i18n="sec.xp2">History</em></h2>
     <div class="sec-rule" aria-hidden="true"></div>
   </div>
-  <p class="xp-drag-hint reveal" aria-label="Scrollable cards — use arrow keys or drag to browse">← Use arrow keys or drag to explore →</p>
+  <p class="xp-drag-hint reveal" aria-label="Scrollable cards — use arrow keys or drag to browse" data-i18n="xp.hint">← Use arrow keys or drag to explore →</p>
   <div class="xp-scroll-wrap" id="xp-scroll" role="region" aria-label="Professional experience cards" tabindex="0">
     <div class="xp-cards">
       <article class="xp-card"><p class="xp-date">FALL 2023 – PRESENT</p><h3 class="xp-role">Graduate Teaching Assistant</h3><p class="xp-org">Dept. of Writing &amp; Rhetoric · UCF</p><ul class="xp-pts" style="list-style:none"><li class="xp-pt">Teaching ENC 1101 and ENC 1102 — English Composition I &amp; II</li><li class="xp-pt">Supervised by Dr. Shane Wood</li></ul></article>
@@ -549,7 +650,7 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
     <div class="talks-statue-text reveal">
       <div class="sec-head" style="margin-bottom:0">
         <span class="sec-label" aria-hidden="true">04</span>
-        <h2 class="sec-title" id="talks-heading">Conference <em>Talks</em></h2>
+        <h2 class="sec-title" id="talks-heading"><span data-i18n="sec.talks">Conference</span> <em data-i18n="sec.talks2">Talks</em></h2>
         <div class="sec-rule" aria-hidden="true"></div>
       </div>
     </div>
@@ -573,10 +674,10 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
   <div class="research-bg" aria-hidden="true">R</div>
   <div class="sec-head reveal">
     <span class="sec-label wh" aria-hidden="true">05</span>
-    <h2 class="sec-title" id="research-heading" style="color:#fff">Research <em style="color:var(--ye)">Interests</em></h2>
+    <h2 class="sec-title" id="research-heading" style="color:#fff"><span data-i18n="sec.research">Research</span> <em style="color:var(--ye)" data-i18n="sec.research2">Interests</em></h2>
     <div class="sec-rule" style="background:rgba(255,255,255,0.2)" aria-hidden="true"></div>
   </div>
-  <p style="font-family:var(--mo);font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:1.5rem;letter-spacing:0.05em">Click a topic to highlight it</p>
+  <p style="font-family:var(--mo);font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:1.5rem;letter-spacing:0.05em" data-i18n="research.hint">Click a topic to highlight it</p>
   <div class="tag-cloud reveal" role="group" aria-label="Research interest topics — click to toggle">
     <button class="rtag featured" aria-pressed="false">Large Language Models</button>
     <button class="rtag featured" aria-pressed="false">Automated Writing Tools</button>
@@ -597,13 +698,13 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
 <!-- SKILLS + AWARDS -->
 <section class="bottom-panels" id="skills" aria-label="Skills and Awards">
   <div class="panel-skills reveal-left">
-    <h2 class="panel-title">Skills &amp;<br><em>Tools</em></h2>
+    <h2 class="panel-title"><span data-i18n="skills.title">Skills &amp;</span><br><em data-i18n="skills.title2">Tools</em></h2>
     <div class="skill-group"><h3 class="sg-head">Design &amp; Media</h3><p class="sg-item">Adobe Photoshop · Illustrator · InDesign</p><p class="sg-item">Dreamweaver · Acrobat</p><p class="sg-item">Premiere · Avid · iMovie</p></div>
     <div class="skill-group"><h3 class="sg-head">Technology &amp; Web</h3><p class="sg-item">HTML · CSS · WordPress · SEO</p><p class="sg-item">Microsoft Office Suite</p><p class="sg-item"><span lang="pt">Ren'Py</span> · Twine (Game Design)</p></div>
     <div class="skill-group"><h3 class="sg-head">Languages / <span lang="pt">Idiomas</span></h3><p class="sg-item">English — Proficient</p><p class="sg-item"><span lang="pt">Português — Fluente (nativo)</span></p></div>
   </div>
   <div class="panel-awards reveal-right">
-    <h2 class="panel-title">Awards &amp;<br><em>Honors</em></h2>
+    <h2 class="panel-title"><span data-i18n="awards.title">Awards &amp;</span><br><em data-i18n="awards.title2">Honors</em></h2>
     <ul class="award-list" style="list-style:none">
       <li class="award-card"><h3 class="award-t">UCF President's Honor Roll</h3><p class="award-m">Fall 2020 · Spring 2021 · Spring 2022 — Perfect 4.0 GPA</p></li>
       <li class="award-card"><h3 class="award-t">UCF Dean's List — College of Arts &amp; Humanities</h3><p class="award-m">Fall 2020</p></li>
@@ -619,8 +720,8 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
 <section class="contact-section" id="contact" aria-labelledby="contact-heading">
   <div class="contact-left">
     <div class="contact-left-bg" aria-hidden="true">C</div>
-    <h2 class="contact-h reveal-left" id="contact-heading"><span lang="pt">Vamos</span><br><em><span lang="pt">conversar.</span></em></h2>
-    <p class="contact-quote reveal-left"><span lang="pt">"A linguagem é a nossa forma de atravessar fronteiras."</span> Open to collaborations, speaking invitations, and conversations about the future of writing and AI.</p>
+    <h2 class="contact-h reveal-left" id="contact-heading"><span data-i18n="contact.h1">Vamos</span><br><em data-i18n="contact.h2">conversar.</em></h2>
+    <p class="contact-quote reveal-left" data-i18n="contact.quote">"A linguagem é a nossa forma de atravessar fronteiras." Open to collaborations, speaking invitations, and conversations about the future of writing and AI.</p>
   </div>
   <div class="contact-right">
     <dl>
@@ -630,7 +731,7 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
       <div class="c-field reveal"><dt class="c-lbl">Academic Status</dt><dd class="c-val">PhD Candidate, Text &amp; Technology · Expected Fall 2028</dd></div>
       <div class="c-field reveal"><dt class="c-lbl">Affiliation</dt><dd class="c-val">AILB — <span lang="pt">Academia Internacional de Literatura Brasileira</span></dd></div>
     </dl>
-    <a href="tel:+13212631058" class="contact-cta reveal">Call now →</a>
+    <a href="tel:+13212631058" class="contact-cta reveal" data-i18n="contact.cta">Call now →</a>
   </div>
 </section>
 
@@ -638,7 +739,7 @@ footer{background:#0e0c17;border-top:2px solid var(--pu);padding:1.5rem 3rem;dis
 
 <footer>
   <span class="f-sig">Priscila Schilaro Santa Rosa</span>
-  <span class="f-meta">© 2026 · <span lang="pt">São Paulo</span> → Kissimmee · UCF</span>
+  <span class="f-meta" data-i18n="footer.meta">© 2026 · São Paulo → Kissimmee · UCF</span>
 </footer>
 
 <!-- visually hidden utility class -->
@@ -1016,6 +1117,192 @@ document.querySelectorAll('.rtag').forEach(btn=>{
   });
 
   setTimeout(()=>setStatus('Press F8 or \u25b6 to read page'),600);
+})();
+
+/* ════════════════════════════════════════
+   LANGUAGE TOGGLE  (EN ↔ PT)
+   ════════════════════════════════════════ */
+(function(){
+  const translations = {
+    en: {
+      "title": "Priscila Schilaro Santa Rosa — PhD Candidate, Educator, Writer",
+      "skip": "Skip to main content",
+      "nav.about": "About",
+      "nav.edu": "Education",
+      "nav.pub": "Publications",
+      "nav.xp": "Experience",
+      "nav.talks": "Talks",
+      "nav.research": "Research",
+      "nav.contact": "Contact",
+      "hero.eyebrow": "PhD Candidate · Educator · Writer · São Paulo → Orlando",
+      "hero.desc": "I ask who bears the cost when writing systems are not designed with everyone in mind — and what it looks like when they are.",
+      "hero.btn1": "Publications →",
+      "hero.btn2": "Research interests",
+      "hero.note": "University of Central Florida · Writing & Rhetoric · Est. 2023",
+      "about.kicker": "// ABOUT · SOBRE MIM",
+      "about.name1": "Researcher,",
+      "about.name2": "writer,",
+      "about.name3": "educator.",
+      "about.body": "A Brazilian-born academic and writer based in Kissimmee, FL. My research asks whose language gets marked as illegitimate — and who bears the cost when automated systems were never designed with them in mind. I work at the intersections of AI literacy, multilingual writing pedagogy, and rhetoric at UCF, while publishing fiction, writing screenplays, and teaching composition. Formerly an Art Director in São Paulo for 8 years.",
+      "stats.pub": "Publications",
+      "stats.conf": "Conferences",
+      "stats.deg": "Degrees",
+      "stats.lang": "Languages",
+      "sec.edu": "Academic",
+      "sec.edu2": "Formation",
+      "sec.pub": "Published",
+      "sec.pub2": "Work",
+      "sec.xp": "Professional",
+      "sec.xp2": "History",
+      "sec.talks": "Conference",
+      "sec.talks2": "Talks",
+      "sec.research": "Research",
+      "sec.research2": "Interests",
+      "research.hint": "Click a topic to highlight it",
+      "xp.hint": "← Use arrow keys or drag to explore →",
+      "pub.articles": "Articles / Artigos",
+      "pub.fiction": "Fiction & Film / Ficção & Cinema",
+      "skills.title": "Skills &",
+      "skills.title2": "Tools",
+      "awards.title": "Awards &",
+      "awards.title2": "Honors",
+      "contact.h1": "Vamos",
+      "contact.h2": "conversar.",
+      "contact.quote": "\"A linguagem é a nossa forma de atravessar fronteiras.\" Open to collaborations, speaking invitations, and conversations about the future of writing and AI.",
+      "contact.cta": "Call now →",
+      "footer.meta": "© 2026 · São Paulo → Kissimmee · UCF"
+    },
+    pt: {
+      "title": "Priscila Schilaro Santa Rosa — Doutoranda, Educadora, Escritora",
+      "skip": "Ir para o conteúdo principal",
+      "nav.about": "Sobre",
+      "nav.edu": "Formação",
+      "nav.pub": "Publicações",
+      "nav.xp": "Experiência",
+      "nav.talks": "Palestras",
+      "nav.research": "Pesquisa",
+      "nav.contact": "Contato",
+      "hero.eyebrow": "Doutoranda · Educadora · Escritora · São Paulo → Orlando",
+      "hero.desc": "Pergunto quem paga o preço quando sistemas de escrita não são projetados pensando em todos — e como seria quando fossem.",
+      "hero.btn1": "Publicações →",
+      "hero.btn2": "Interesses de pesquisa",
+      "hero.note": "Universidade da Flórida Central · Escrita e Retórica · Est. 2023",
+      "about.kicker": "// SOBRE MIM · ABOUT",
+      "about.name1": "Pesquisadora,",
+      "about.name2": "escritora,",
+      "about.name3": "educadora.",
+      "about.body": "Acadêmica e escritora brasileira radicada em Kissimmee, FL. Minha pesquisa pergunta cuja linguagem é marcada como ilegítima — e quem arca com o custo quando sistemas automatizados nunca foram projetados com essas pessoas em mente. Trabalho nas interseções de letramento em IA, pedagogia da escrita multilíngue e retórica na UCF, enquanto publico ficção, escrevo roteiros e ensino composição. Fui diretora de arte em São Paulo por 8 anos.",
+      "stats.pub": "Publicações",
+      "stats.conf": "Conferências",
+      "stats.deg": "Diplomas",
+      "stats.lang": "Idiomas",
+      "sec.edu": "Formação",
+      "sec.edu2": "Acadêmica",
+      "sec.pub": "Trabalho",
+      "sec.pub2": "Publicado",
+      "sec.xp": "Histórico",
+      "sec.xp2": "Profissional",
+      "sec.talks": "Palestras em",
+      "sec.talks2": "Conferências",
+      "sec.research": "Interesses de",
+      "sec.research2": "Pesquisa",
+      "research.hint": "Clique em um tema para destacá-lo",
+      "xp.hint": "← Use as setas ou arraste para explorar →",
+      "pub.articles": "Artigos / Articles",
+      "pub.fiction": "Ficção & Cinema / Fiction & Film",
+      "skills.title": "Habilidades e",
+      "skills.title2": "Ferramentas",
+      "awards.title": "Prêmios e",
+      "awards.title2": "Honrarias",
+      "contact.h1": "Vamos",
+      "contact.h2": "conversar.",
+      "contact.quote": "\"A linguagem é a nossa forma de atravessar fronteiras.\" Aberta a colaborações, convites para palestras e conversas sobre o futuro da escrita e da IA.",
+      "contact.cta": "Ligar agora →",
+      "footer.meta": "© 2026 · São Paulo → Kissimmee · UCF"
+    }
+  };
+
+  let currentLang = 'en';
+
+  function applyTranslations(lang){
+    const t = translations[lang];
+    document.documentElement.setAttribute('lang', lang === 'pt' ? 'pt-BR' : 'en');
+    document.documentElement.setAttribute('data-lang', lang);
+
+    // Update title
+    document.title = t['title'];
+
+    // Update all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if(t[key] !== undefined){
+        // Preserve inner HTML for elements that might have child tags
+        // Use innerHTML only for keys we know are safe plain text
+        el.innerHTML = t[key];
+      }
+    });
+
+    // Update lang toggle button label
+    document.getElementById('lang-label').textContent = lang === 'en' ? 'PT' : 'EN';
+    document.getElementById('lang-toggle').setAttribute('aria-label',
+      lang === 'en' ? 'Switch to Portuguese' : 'Switch to English'
+    );
+
+    // Update TTS status if visible
+    const statusEl = document.getElementById('tts-status');
+    if(statusEl && statusEl.textContent.includes('read') || statusEl && statusEl.textContent.includes('leia')){
+      statusEl.textContent = lang === 'pt' ? 'Pressione F8 para ler a página' : 'Press F8 or ▶ to read page';
+    }
+  }
+
+  document.getElementById('lang-toggle').addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'pt' : 'en';
+    applyTranslations(currentLang);
+  });
+
+})();
+
+/* ════════════════════════════════════════
+   FONT SIZE CONTROLS
+   ════════════════════════════════════════ */
+(function(){
+  const sizes = ['sm', 'md', 'lg', 'xl'];
+  let idx = 1; // default: md
+
+  function applySize(){
+    document.documentElement.setAttribute('data-font', sizes[idx]);
+  }
+
+  document.getElementById('font-up').addEventListener('click', () => {
+    if(idx < sizes.length - 1){ idx++; applySize(); }
+  });
+  document.getElementById('font-down').addEventListener('click', () => {
+    if(idx > 0){ idx--; applySize(); }
+  });
+  document.getElementById('font-reset').addEventListener('click', () => {
+    idx = 1; applySize();
+  });
+})();
+
+/* ════════════════════════════════════════
+   HIGH CONTRAST TOGGLE
+   ════════════════════════════════════════ */
+(function(){
+  const btn = document.getElementById('contrast-toggle');
+  let on = false;
+
+  // Respect OS preference on load
+  if(window.matchMedia('(prefers-contrast: more)').matches){
+    on = true;
+    document.documentElement.setAttribute('data-contrast','high');
+    btn.setAttribute('aria-pressed','true');
+  }
+
+  btn.addEventListener('click', () => {
+    on = !on;
+    document.documentElement.setAttribute('data-contrast', on ? 'high' : 'normal');
+    btn.setAttribute('aria-pressed', String(on));
+  });
 })();
 </script>
 </body>
